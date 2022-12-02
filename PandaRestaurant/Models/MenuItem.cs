@@ -5,7 +5,8 @@ namespace PandaRestaurant.Models
 {
     public class MenuItem
     {
-        public int MenuItemId { get; set; }
+        [Display(Name = "Reference Number")]
+        public int MenuItemID { get; set; }
         [Required]
         [Display(Name = "Menu Item Name")]
         [StringLength(50, MinimumLength = 3)]
