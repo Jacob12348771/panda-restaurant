@@ -10,5 +10,6 @@ namespace PandaRestaurant.Models
         public string StaffName { get; set; }
         [Required]
         public string StaffPosition { get; set; }
+        public ICollection<Table> Tables { get; set; }
     }
 }

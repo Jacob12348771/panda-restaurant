@@ -18,6 +18,9 @@ namespace PandaRestaurant.Models
         public int TableID { get; set; }
         [ForeignKey("Customer")]
         public int CustomerID { get; set;}
+        public ICollection<MenuItem> MenuItem { get; set; }
+        public Table Table { get; set; }
+        public Customer Customer { get; set; }
 
     }
 }
