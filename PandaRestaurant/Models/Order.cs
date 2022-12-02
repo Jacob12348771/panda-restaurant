@@ -11,13 +11,13 @@ namespace PandaRestaurant.Models
             Created, Preparing, Ready, Paid
         }
 
-        public int OrderId { get; set; }
+        public int OrderID { get; set; }
         public OrderStatusEnum OrderStatus { get; set; }
         public DateTime OrderDatetime { get; set; }
         [ForeignKey("Table")]
-        public int TableId { get; set; }
+        public int TableID { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerId { get; set;}
+        public int CustomerID { get; set;}
 
     }
 }
