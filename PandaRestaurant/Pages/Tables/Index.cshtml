@@ -1,0 +1,36 @@
+﻿@page
+@model PandaRestaurant.Pages.Tables.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Table[0].TableOccupied)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Table) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TableOccupied)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.TableID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.TableID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
