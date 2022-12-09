@@ -14,7 +14,7 @@ namespace PandaRestaurant.Models
 
         public ICollection<Order> Orders { get; set; }
 
-        public Employee Employee { get; set; }
+        public ICollection<Employee> Employees { get; set; }
 
     }
 }
