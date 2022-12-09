@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PandaRestaurant.Models;
 
 namespace PandaRestaurant.Data
 {
@@ -9,5 +10,6 @@ namespace PandaRestaurant.Data
             : base(options)
         {
         }
+        public DbSet<PandaRestaurant.Models.Customer> Customer { get; set; }
     }
 }
