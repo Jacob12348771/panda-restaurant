@@ -9,5 +9,6 @@ namespace PandaRestaurant.Models
         public int CustomerID { get; set; }
         [StringLength(50, MinimumLength = 3)]
         public string CustomerName { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }
