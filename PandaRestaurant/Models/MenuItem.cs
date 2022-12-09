@@ -12,11 +12,11 @@ namespace PandaRestaurant.Models
         [StringLength(50, MinimumLength = 3)]
         public string MenuItemName { get; set; }
         [Display(Name = "Preparation Time (Minutes)")]
-        public string? MenuItemPrepTime { get; set; }
+        public int? MenuItemPrepTime { get; set; }
         [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString = "{0:C0}")]
+        //[DisplayFormat(DataFormatString = "{0:C0}")]
         [Display(Name = "Dish Price")]
-        public float MenuItemPrice { get; set; }
+        public double MenuItemPrice { get; set; }
         public ICollection<Order> Orders { get; set; }
     }
 }
