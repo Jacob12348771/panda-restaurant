@@ -2,14 +2,14 @@
 
 namespace PandaRestaurant.Models
 {
-    public class Staff
+    public class Employee
     {
-        public int StaffID { get; set; }
+        public int EmployeeID { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "You name cannot exceed 100 characters")]
-        public string StaffName { get; set; }
+        public string EmployeeName { get; set; }
         [Required]
-        public string StaffPosition { get; set; }
+        public string EmployeePosition { get; set; }
         public ICollection<Table> Tables { get; set; }
     }
 }
