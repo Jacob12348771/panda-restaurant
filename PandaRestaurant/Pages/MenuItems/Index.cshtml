@@ -1,0 +1,48 @@
+﻿@page
+@model PandaRestaurant.Pages.MenuItems.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrepTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MenuItem) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemPrepTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemPrice)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MenuItemID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MenuItemID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MenuItemID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

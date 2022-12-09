@@ -12,7 +12,7 @@ namespace PandaRestaurant.Models
         public bool TableOccupied { get; set; }
 
         public ICollection<Order> Orders { get; set; }
-        public Staff Staff { get; set; }
+        public Employee Employee { get; set; }
 
     }
 }
