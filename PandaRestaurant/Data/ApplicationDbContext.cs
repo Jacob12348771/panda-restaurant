@@ -14,5 +14,6 @@ namespace PandaRestaurant.Data
         public DbSet<PandaRestaurant.Models.Employee> Employee { get; set; }
         public DbSet<PandaRestaurant.Models.Table> Table { get; set; }
         public DbSet<PandaRestaurant.Models.Order> Order { get; set; }
+        public DbSet<PandaRestaurant.Models.MenuItem> MenuItem { get; set; }
     }
 }

@@ -1,0 +1,44 @@
+﻿@page
+@model PandaRestaurant.Pages.MenuItems.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MenuItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MenuItem.MenuItemName" class="control-label"></label>
+                <input asp-for="MenuItem.MenuItemName" class="form-control" />
+                <span asp-validation-for="MenuItem.MenuItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuItem.MenuItemPrepTime" class="control-label"></label>
+                <input asp-for="MenuItem.MenuItemPrepTime" class="form-control" />
+                <span asp-validation-for="MenuItem.MenuItemPrepTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuItem.MenuItemPrice" class="control-label"></label>
+                <input asp-for="MenuItem.MenuItemPrice" class="form-control" />
+                <span asp-validation-for="MenuItem.MenuItemPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
