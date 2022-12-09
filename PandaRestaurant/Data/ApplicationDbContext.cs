@@ -22,6 +22,7 @@ namespace PandaRestaurant.Data
             modelBuilder.Entity<Table>().ToTable("Table");
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

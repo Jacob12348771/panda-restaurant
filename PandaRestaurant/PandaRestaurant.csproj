@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-PandaRestaurant-42E3F2CE-C8A1-43F7-B9CD-AF4BFE136487</UserSecretsId>
   </PropertyGroup>
