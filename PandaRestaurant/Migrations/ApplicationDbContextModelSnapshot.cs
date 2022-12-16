@@ -8,7 +8,7 @@ using PandaRestaurant.Data;
 
 #nullable disable
 
-namespace PandaRestaurant.Data.Migrations
+namespace PandaRestaurant.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

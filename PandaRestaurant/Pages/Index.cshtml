@@ -30,30 +30,44 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Chicken</td>
-                    <td>Table 3</td>
-                    <td>20 Mins</td>
-                    <td>£100.00</td>
-                    <td>Preparing</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Soup</td>
-                    <td>Table 1</td>
-                    <td>13 Mins</td>
-                    <td>£32.00</td>
-                    <td>Paid</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Pasta</td>
-                    <td>Table 4</td>
-                    <td>10 Mins</td>
-                    <td>£10.00</td>
-                    <td>Prepared</td>
-                </tr>
+                @foreach (var item in Model.Order)
+                {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <ul>
+                                @foreach (var order in item.MenuItem)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(modelItem => order.MenuItemName)
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.TableID)</td>
+                        <td>
+                            <ul>
+                                @foreach (var order in item.MenuItem)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(modelItem => order.MenuItemPrepTime) mins
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                @foreach (var order in item.MenuItem)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(modelItem => order.MenuItemPrice)
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

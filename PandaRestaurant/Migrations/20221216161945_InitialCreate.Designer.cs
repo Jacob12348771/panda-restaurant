@@ -9,11 +9,11 @@ using PandaRestaurant.Data;
 
 #nullable disable
 
-namespace PandaRestaurant.Data.Migrations
+namespace PandaRestaurant.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221216101140_updatedScaffolding")]
-    partial class updatedScaffolding
+    [Migration("20221216161945_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

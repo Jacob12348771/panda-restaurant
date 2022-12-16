@@ -1,20 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using PandaRestaurant.Models;
 
 namespace PandaRestaurant.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly PandaRestaurant.Data.ApplicationDbContext _context;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(PandaRestaurant.Data.ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public void OnGet()
-        {
+        public IList<Order> Order { get; set; } = default!;
 
+        public async Task OnGetAsync()
+        {
+            if (_context.Order != null)
+            {
+                Order = await _context.Order
+                .Include(o => o.MenuItem)
+                .Include(o => o.Table).ToListAsync();
+            }
         }
     }
 }
