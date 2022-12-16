@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PandaRestaurant.Data.Migrations
+namespace PandaRestaurant.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,7 +68,7 @@ namespace PandaRestaurant.Data.Migrations
                     EmployeeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    EmployeePosition = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    EmployeePosition = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
