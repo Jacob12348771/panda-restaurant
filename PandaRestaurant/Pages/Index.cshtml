@@ -5,6 +5,98 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="row">
+        <div class="col-md-4">
+            @{List<int> occupiedTables = new List<int>();}
+            @foreach (var item in Model.Table) {
+                if (item.TableOccupied == true)
+                {
+                    occupiedTables.Add(item.TableID);
+                }
+            }
+            @Html.DisplayFor(modelItem => occupiedTables.Count)
+        </div>
+        <div class="col-md-4">
+            @{
+                List<int> unoccupiedTables = new List<int>();
+            }
+            @foreach (var item in Model.Table)
+            {
+                if (item.TableOccupied == false)
+                {
+                    unoccupiedTables.Add(item.TableID);
+                }
+            }
+            @Html.DisplayFor(modelItem => unoccupiedTables.Count)
+        </div>
+        <div class="col-md-4">
+            @{
+                List<int> activeOrders = new List<int>();
+            }
+            @foreach (var item in Model.Order)
+            {
+                // @Html.DisplayFor(modelItem => item.OrderStatus.ToString())
+                if (item.OrderStatus.ToString() != "Paid")
+                {
+                    activeOrders.Add(item.OrderID);
+                }
+            }
+            @Html.DisplayFor(modelItem => activeOrders.Count)
+        </div>
+    </div>
+    <!-- Add pagination and sorting using similar way to contoso tutorial. -->
+    <div id="table" class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Img</th>
+                    <th scope="col">Meal Name</th>
+                    <th scope="col">Table</th>
+                    <th scope="col">Prep Time</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Order)
+                {
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <ul>
+                                @foreach (var order in item.MenuItem)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(modelItem => order.MenuItemName)
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.TableID)</td>
+                        <td>
+                            <ul>
+                                @foreach (var order in item.MenuItem)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(modelItem => order.MenuItemPrepTime) mins
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                @foreach (var order in item.MenuItem)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(modelItem => order.MenuItemPrice)
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
