@@ -45,7 +45,14 @@ namespace PandaRestaurant.Data
 
             var employees = new Models.Employee[]
             {
-                new Models.Employee{EmployeeName="Jeff", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[0], tables[3] } }
+                new Models.Employee{EmployeeName="Jeff", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[0], tables[3] } },
+                new Models.Employee{EmployeeName="James", EmployeePosition = Employee.EmployeePositionEnum.Chef},
+                new Models.Employee{EmployeeName="Chris", EmployeePosition = Employee.EmployeePositionEnum.Manager, Tables = new List<Models.Table>{tables[4]} },
+                new Models.Employee{EmployeeName="Anna", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[2], tables[3] } },
+                new Models.Employee{EmployeeName="Oliver", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[1]} },
+                new Models.Employee{EmployeeName="Lea", EmployeePosition = Employee.EmployeePositionEnum.Chef},
+                new Models.Employee{EmployeeName="Nick", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[5], tables[6] } },
+
             };
 
             context.Employee.AddRange(employees);
