@@ -18,9 +18,13 @@ namespace PandaRestaurant.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().ToTable("Customer");
-            modelBuilder.Entity<Employee>().ToTable("Employee");
+            modelBuilder.Entity<Employee>().ToTable("Employee")
+                .HasMany(t => t.Tables)
+                .WithMany(e => e.Employees);
             modelBuilder.Entity<Table>().ToTable("Table");
-            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<Order>().ToTable("Order")
+                .HasMany(m => m.MenuItem)
+                .WithMany(o => o.Orders);
             modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
             base.OnModelCreating(modelBuilder);
         }
