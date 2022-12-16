@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
 namespace PandaRestaurant.Models
@@ -12,7 +13,8 @@ namespace PandaRestaurant.Models
         public bool TableOccupied { get; set; }
 
         public ICollection<Order> Orders { get; set; }
-        public Staff Staff { get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
 
     }
 }
