@@ -7,13 +7,41 @@
 <div class="text-center">
     <div class="row">
         <div class="col-md-4">
-            <p>TEST</p>
+            @{List<int> occupiedTables = new List<int>();}
+            @foreach (var item in Model.Table) {
+                if (item.TableOccupied == true)
+                {
+                    occupiedTables.Add(item.TableID);
+                }
+            }
+            @Html.DisplayFor(modelItem => occupiedTables.Count)
         </div>
         <div class="col-md-4">
-            <p>TEST</p>
+            @{
+                List<int> unoccupiedTables = new List<int>();
+            }
+            @foreach (var item in Model.Table)
+            {
+                if (item.TableOccupied == false)
+                {
+                    unoccupiedTables.Add(item.TableID);
+                }
+            }
+            @Html.DisplayFor(modelItem => unoccupiedTables.Count)
         </div>
         <div class="col-md-4">
-            <p>TEST</p>
+            @{
+                List<int> activeOrders = new List<int>();
+            }
+            @foreach (var item in Model.Order)
+            {
+                // @Html.DisplayFor(modelItem => item.OrderStatus.ToString())
+                if (item.OrderStatus.ToString() != "Paid")
+                {
+                    activeOrders.Add(item.OrderID);
+                }
+            }
+            @Html.DisplayFor(modelItem => activeOrders.Count)
         </div>
     </div>
     <!-- Add pagination and sorting using similar way to contoso tutorial. -->

@@ -15,6 +15,7 @@ namespace PandaRestaurant.Pages
         }
 
         public IList<Order> Order { get; set; } = default!;
+        public IList<Table> Table { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -23,6 +24,11 @@ namespace PandaRestaurant.Pages
                 Order = await _context.Order
                 .Include(o => o.MenuItem)
                 .Include(o => o.Table).ToListAsync();
+            }
+
+            if (_context.Table != null)
+            {
+                Table = await _context.Table.ToListAsync();
             }
         }
     }
