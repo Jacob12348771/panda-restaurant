@@ -57,6 +57,20 @@ namespace PandaRestaurant.Data
 
             context.Employee.AddRange(employees);
             context.SaveChanges();
+
+            var customers = new Models.Customer[]
+            {
+                new Models.Customer{CustomerName="John"},
+                new Models.Customer{CustomerName="Zara"},
+                new Models.Customer{CustomerName="Lily"},
+                new Models.Customer{CustomerName="Sidney"},
+                new Models.Customer{CustomerName="Steve"},
+                new Models.Customer{CustomerName="Simba"},
+                new Models.Customer{CustomerName="Tim"}
+            };
+
+            context.Customer.AddRange(customers);
+            context.SaveChanges();
         }
     }
 }
