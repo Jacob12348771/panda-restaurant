@@ -8,13 +8,12 @@ namespace PandaRestaurant.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            /*
-            if (context.Table.Any())
+            // Prevent db being overwritten when testing.
+            if (context.Table.Any() || context.Order.Any() || context.MenuItem.Any() || context.Employee.Any() || context.Customer.Any())
             {
                 return;
             }
-            */
-
+            
             var tables = new Models.Table[]
             {
                 new Models.Table{TableOccupied=true},
@@ -45,10 +44,45 @@ namespace PandaRestaurant.Data
 
             var employees = new Models.Employee[]
             {
-                new Models.Employee{EmployeeName="Jeff", EmployeePosition="Waiter", Tables = new List<Models.Table>{tables[0], tables[3] } }
+                new Models.Employee{EmployeeName="Jeff", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[0], tables[3] } },
+                new Models.Employee{EmployeeName="James", EmployeePosition = Employee.EmployeePositionEnum.Chef},
+                new Models.Employee{EmployeeName="Chris", EmployeePosition = Employee.EmployeePositionEnum.Manager, Tables = new List<Models.Table>{tables[4]} },
+                new Models.Employee{EmployeeName="Anna", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[2], tables[3] } },
+                new Models.Employee{EmployeeName="Oliver", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[1]} },
+                new Models.Employee{EmployeeName="Lea", EmployeePosition = Employee.EmployeePositionEnum.Chef},
+                new Models.Employee{EmployeeName="Nick", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[5], tables[6] } },
+
             };
 
             context.Employee.AddRange(employees);
+            context.SaveChanges();
+
+            var customers = new Models.Customer[]
+            {
+                new Models.Customer{CustomerName="John"},
+                new Models.Customer{CustomerName="Zara"},
+                new Models.Customer{CustomerName="Lily"},
+                new Models.Customer{CustomerName="Sidney"},
+                new Models.Customer{CustomerName="Steve"},
+                new Models.Customer{CustomerName="Simba"},
+                new Models.Customer{CustomerName="Tim"}
+            };
+
+            context.Customer.AddRange(customers);
+            context.SaveChanges();
+
+            var orders = new Models.Order[]
+            {
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Created, OrderDatetime = new DateTime(2022, 5, 1, 8, 30, 00), TableID = 1, CustomerID = 1, MenuItem = new List<Models.MenuItem>{menuItems[1], menuItems[3], menuItems[4] } },
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Ready, OrderDatetime = new DateTime(2022, 5, 12, 9, 40, 00), TableID = 2, CustomerID = 2, MenuItem = new List<Models.MenuItem>{menuItems[2], menuItems[0], menuItems[3] } },
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Paid, OrderDatetime = new DateTime(2022, 5, 11, 13, 23, 00), TableID = 3, CustomerID = 3, MenuItem = new List<Models.MenuItem>{menuItems[5], menuItems[6], menuItems[1] } },
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Created, OrderDatetime = new DateTime(2022, 5, 13, 15, 21, 00), TableID = 4, CustomerID = 4, MenuItem = new List<Models.MenuItem>{menuItems[2], menuItems[3], menuItems[6] } },
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Created, OrderDatetime = new DateTime(2022, 5, 17, 15, 40, 00), TableID = 5, CustomerID = 5, MenuItem = new List<Models.MenuItem>{menuItems[5], menuItems[3], menuItems[2] } },
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Preparing, OrderDatetime = new DateTime(2022, 5, 20, 8, 11, 00), TableID = 6, CustomerID = 6, MenuItem = new List<Models.MenuItem>{menuItems[5], menuItems[3], menuItems[4] } },
+                new Models.Order{OrderStatus = Order.OrderStatusEnum.Ready, OrderDatetime = new DateTime(2022, 5, 24, 10, 07, 00), TableID = 7, CustomerID = 7, MenuItem = new List<Models.MenuItem>{menuItems[2], menuItems[6], menuItems[4] } }
+            };
+
+            context.Order.AddRange(orders);
             context.SaveChanges();
         }
     }
