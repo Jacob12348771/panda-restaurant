@@ -10,48 +10,39 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">PandaRestaurant</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Orders/Index">Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Employees/Index">Employees</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Tables/Index">Tables</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/MenuItems/Index">MenuItems</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="col-auto px-0">
+                    <div id="sidebar" class="collapse collapse-horizontal show border-end">
+                        <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+                            <a class="list-group-item border-end-0 d-inline-block text-truncate" asp-area="" asp-page="/Orders/Index"><span>Orders</span> </a>
+                            <a class="list-group-item border-end-0 d-inline-block text-truncate" asp-area="" asp-page="/MenuItems/Index"><span>Menu Items</span> </a>
+                            <a class="list-group-item border-end-0 d-inline-block text-truncate" asp-area="" asp-page="/Customers/Index"><span>Customers</span> </a>
+                            <a class="list-group-item border-end-0 d-inline-block text-truncate" asp-area="" asp-page="/Tables/Index"><span>Tables</span> </a>
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
                 </div>
+                <main class="col ps-md-2 pt-2">
+                    <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container">
+                                <main role="main" class="pb-3">
+                                    @RenderBody()
+                                </main>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="border-top footer text-muted">
+                    <div class="container">
+                        &copy; 2022 - PandaRestaurant - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                    </div>
+                </footer>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - PandaRestaurant - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
-    </footer>
-
+    </header>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
