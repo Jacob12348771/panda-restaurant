@@ -8,12 +8,12 @@ namespace PandaRestaurant.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            /*
-            if (context.Table.Any())
+            // Prevent db being overwritten when testing.
+            if (context.Table.Any() || context.Order.Any() || context.MenuItem.Any() || context.Employee.Any() || context.Customer.Any())
             {
                 return;
             }
-            */
+            
 
             var tables = new Models.Table[]
             {
@@ -45,7 +45,7 @@ namespace PandaRestaurant.Data
 
             var employees = new Models.Employee[]
             {
-                new Models.Employee{EmployeeName="Jeff", EmployeePosition="Waiter", Tables = new List<Models.Table>{tables[0], tables[3] } }
+                new Models.Employee{EmployeeName="Jeff", EmployeePosition = Employee.EmployeePositionEnum.Waiter, Tables = new List<Models.Table>{tables[0], tables[3] } }
             };
 
             context.Employee.AddRange(employees);
