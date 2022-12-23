@@ -28,7 +28,7 @@ namespace PandaRestaurant.Pages.Tables
         public Table Table { get; set; }
         
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // Using Table object to prevent overposting.
         public async Task<IActionResult> OnPostAsync()
         {
             var emptyTable = new Table();
