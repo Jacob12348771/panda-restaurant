@@ -25,7 +25,9 @@ namespace PandaRestaurant.Pages.Tables
         {
             if (_context.Table != null)
             {
-                Table = await _context.Table.ToListAsync();
+                Table = await _context.Table
+                    .Include(o => o.Orders)
+                    .ToListAsync();
             }
         }
     }
