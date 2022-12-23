@@ -9,7 +9,7 @@ namespace PandaRestaurant.Models
         [Display(Name = "Table Number")]
         public int TableID { get; set; }
 
-        [Display(Name = "Table Availablity")]
+        [Display(Name = "Occupied")]
         public bool TableOccupied { get; set; }
 
         public ICollection<Order> Orders { get; set; }
