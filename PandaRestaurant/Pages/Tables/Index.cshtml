@@ -2,10 +2,10 @@
 @model PandaRestaurant.Pages.Tables.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tables";
 }
 
-<h1>Index</h1>
+<h1>Tables</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -13,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Table[0].TableID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Table[0].TableOccupied)
             </th>
@@ -22,6 +25,9 @@
     <tbody>
 @foreach (var item in Model.Table) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TableID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TableOccupied)
             </td>
