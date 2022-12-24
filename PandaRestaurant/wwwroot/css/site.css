@@ -14,9 +14,18 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: #DAD7D7;
 }
 
 .panda-logo {
    padding: 30px; 
+}
+
+.orders-image {
+    margin-left:-5px;
+}
+
+.dashboard-cards {
+    border-radius: 1px #8C8888;
 }
