@@ -18,8 +18,16 @@ body {
     background: #DAD7D7;
 }
 
+ #sidebar-nav {
+    background: #DAD7D7;
+}
+
+.list-group-item {
+    background: #DAD7D7;
+}
+
 .panda-logo {
-   padding: 30px; 
+    padding: 30px;
 }
 
 .orders-image {
@@ -27,5 +35,11 @@ body {
 }
 
 .dashboard-cards {
-    border-radius: 1px #8C8888;
+    border-radius: 4px;
+    background: #ffffff;
+    min-height: 200px;
+    box-shadow: 2px 2px 2px 1px #DAD7D7;
+    max-width:340px;
+
 }
+

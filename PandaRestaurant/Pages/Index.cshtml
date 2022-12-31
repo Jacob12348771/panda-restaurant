@@ -4,9 +4,10 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <div class="row">
-        <div class="col-md-4 dashboard-cards">
+<div class="text-center container">
+    <div class="row cards-row gy-5">
+        <div class="col-md-4">
+            <div class="p-3 dashboard-cards">
             @{List<int> occupiedTables = new List<int>();}
             @foreach (var item in Model.Table) {
                 if (item.TableOccupied == true)
@@ -15,8 +16,11 @@
                 }
             }
             @Html.DisplayFor(modelItem => occupiedTables.Count)
+            </div>
         </div>
-        <div class="col-md-4 dashboard-cards">
+        <div class="col-md-4">
+            <div class="p-3 dashboard-cards">
+
             @{
                 List<int> unoccupiedTables = new List<int>();
             }
@@ -28,8 +32,11 @@
                 }
             }
             @Html.DisplayFor(modelItem => unoccupiedTables.Count)
+            </div>
         </div>
-        <div class="col-md-4 dashboard-cards">
+        <div class="col-md-4">
+            <div class="p-3 dashboard-cards">
+
             @{
                 List<int> activeOrders = new List<int>();
             }
@@ -42,6 +49,7 @@
                 }
             }
             @Html.DisplayFor(modelItem => activeOrders.Count)
+            </div>
         </div>
     </div>
     <!-- Add pagination and sorting using similar way to contoso tutorial. -->
