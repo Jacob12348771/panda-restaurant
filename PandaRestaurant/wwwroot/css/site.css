@@ -15,15 +15,17 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: #DAD7D7;
+    background: #F9F9F9;
 }
 
- #sidebar-nav {
-    background: #DAD7D7;
+#sidebar-nav {
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .list-group-item {
-    background: #DAD7D7;
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .panda-logo {
@@ -54,5 +56,14 @@ body {
 }
 .text-card {
     text-align: left;
+}
+.table-dashboard {
+    margin-top: 5%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.page-title {
+    font-size: 26px;
+    line-height: 29px;
+    color: #635D5D;
 }
 
