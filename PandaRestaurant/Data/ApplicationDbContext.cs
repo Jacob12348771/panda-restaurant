@@ -17,7 +17,9 @@ namespace PandaRestaurant.Data
         public DbSet<PandaRestaurant.Models.MenuItem> MenuItem { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>().ToTable("Customer");
+            modelBuilder.Entity<Customer>().ToTable("Customer")
+                .HasMany(o => o.Orders)
+                .WithOne(c => c.Customer);
             modelBuilder.Entity<Employee>().ToTable("Employee")
                 .HasMany(t => t.Tables)
                 .WithMany(e => e.Employees);
