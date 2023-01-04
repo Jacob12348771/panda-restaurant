@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn-spacing {
+    margin: 10px 0px 10px 0px;
+}
