@@ -26,7 +26,15 @@
             <th>
                 Active Orders
             </th>
-            <th></th>
+            <th>
+                Edit Table
+            </th>
+            <th>
+                Table Details
+            </th>
+            <th>
+                Remove Table
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -54,8 +62,12 @@
                     @Html.DisplayFor(modelItem => activeOrders.Count)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.TableID">Details</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a>
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.TableID">Details</a>
+                </td>
+                <td>
                     <a asp-page="./Delete" asp-route-id="@item.TableID">Delete</a>
                 </td>
             </tr>
