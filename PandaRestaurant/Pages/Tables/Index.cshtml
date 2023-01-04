@@ -14,10 +14,14 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Table[0].TableID)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TableNumberSort">
+                    @Html.DisplayNameFor(model => model.Table[0].TableID)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Table[0].TableOccupied)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OccupiedSort">
+                    @Html.DisplayNameFor(model => model.Table[0].TableOccupied)
+                </a>
             </th>
             <th>
                 Active Orders
