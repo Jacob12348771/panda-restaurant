@@ -75,3 +75,10 @@ body {
         margin-top: 7px;
         display: block;
     }
+.circle-size {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: mediumpurple;
+    margin: 10px auto;
+}

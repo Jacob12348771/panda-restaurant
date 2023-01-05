@@ -77,8 +77,12 @@
 
                 </div>
             </div>
-            <div class="col bg-dark bg-opacity-10 shadow-lg m-2 rounded-3">
-                Section for table details
+            <div class="col bg-dark bg-opacity-10 shadow-lg m-2 rounded-3 circle-container">
+                <div class="d-flex flex-column rounded-circle circle-size text-center text-light">
+                    <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+                        Table @Html.DisplayFor(modelItem => Model.Order.TableID)
+                    </div>
+                </div>
             </div>
         </div>
     </div>
