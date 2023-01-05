@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 namespace PandaRestaurant.Models
 {
@@ -11,8 +13,11 @@ namespace PandaRestaurant.Models
             Created, Preparing, Ready, Paid
         }
 
+        [Display(Name = "Order ID")]
         public int OrderID { get; set; }
+        [Display(Name = "Order Status")]
         public OrderStatusEnum OrderStatus { get; set; }
+        [Display(Name = "Date & Time Ordered")]
         public DateTime OrderDatetime { get; set; }
         [ForeignKey("Table")]
         public int TableID { get; set; }
