@@ -28,7 +28,9 @@ namespace PandaRestaurant.Pages.Orders
                 return NotFound();
             }
 
-            var order = await _context.Order.FirstOrDefaultAsync(m => m.OrderID == id);
+            var order = await _context.Order.
+                Include(m => m.MenuItem)
+                .FirstOrDefaultAsync(m => m.OrderID == id);
             if (order == null)
             {
                 return NotFound();

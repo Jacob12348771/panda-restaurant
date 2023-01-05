@@ -14,18 +14,67 @@
         <div class="row">
             <div class="col-8 bg-dark bg-opacity-10 shadow-lg m-2 rounded-3">
                 <div class="line">
-                    <div class="step active">
-                        <span class="circle"> </span> <span class="text">Order Created</span>
-                     </div>
-                    <div class="step active">
-                        <span class="circle"> </span> <span class="text">Order Preparing</span>
-                    </div>
-                    <div class="step">
-                        <span class="circle"> </span> <span class="text">Order Ready</span>
-                    </div>
-                    <div class="step">
-                        <span class="circle"> </span> <span class="text">Order Paid</span> 
-                    </div>
+                    @if (Model.Order.OrderStatus.ToString() == "Created")
+                    {
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Created</span>
+                        </div>
+                        <div class="step">
+                            <span class="circle"> </span> <span class="text">Order Preparing</span>
+                        </div>
+                        <div class="step">
+                            <span class="circle"> </span> <span class="text">Order Ready</span>
+                        </div>
+                        <div class="step">
+                            <span class="circle"> </span> <span class="text">Order Paid</span>
+                        </div>
+                    }
+                    else if (Model.Order.OrderStatus.ToString() == "Preparing")
+                    {
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Created</span>
+                        </div>
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Preparing</span>
+                        </div>
+                        <div class="step">
+                            <span class="circle"> </span> <span class="text">Order Ready</span>
+                        </div>
+                        <div class="step">
+                            <span class="circle"> </span> <span class="text">Order Paid</span>
+                        </div>
+                    }
+                    else if (Model.Order.OrderStatus.ToString() == "Ready")
+                    {
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Created</span>
+                        </div>
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Preparing</span>
+                        </div>
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Ready</span>
+                        </div>
+                        <div class="step">
+                            <span class="circle"> </span> <span class="text">Order Paid</span>
+                        </div>
+                    }
+                    else if (Model.Order.OrderStatus.ToString() == "Paid") 
+                    {
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Created</span>
+                        </div>
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Preparing</span>
+                        </div>
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Ready</span>
+                        </div>
+                        <div class="step active">
+                            <span class="circle"> </span> <span class="text">Order Paid</span>
+                        </div>
+                    }
+
                 </div>
             </div>
             <div class="col bg-dark bg-opacity-10 shadow-lg m-2 rounded-3">
@@ -33,32 +82,43 @@
             </div>
         </div>
     </div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.OrderStatus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Order.OrderStatus)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.OrderDatetime)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Order.OrderDatetime)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.Table)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Order.Table.TableID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.Customer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Order.Customer.CustomerID)
-        </dd>
-    </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Item ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Prep Time
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Order.MenuItem)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemPrepTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemPrice)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Order?.OrderID">Edit</a> |
