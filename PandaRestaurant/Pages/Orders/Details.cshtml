@@ -8,37 +8,28 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Order</h4>
+    <h4>Order ID: @Html.DisplayFor(model => model.Order.OrderID)</h4>
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col-8 bg-dark bg-opacity-10">
-                <hr />
-                <div class="row">
-                    <div class="col">
-                        <div class="rounded-circle circle-sizing">
-                        </div>
-                        Created
+            <div class="col-8 bg-dark bg-opacity-10 shadow-lg m-2 rounded-3">
+                <div class="line">
+                    <div class="step active">
+                        <span class="circle"> </span> <span class="text">Order Created</span>
+                     </div>
+                    <div class="step active">
+                        <span class="circle"> </span> <span class="text">Order Preparing</span>
                     </div>
-                    <div class="col">
-                        <div class="rounded-circle circle-sizing">
-                        </div>
-                        Preparing
+                    <div class="step">
+                        <span class="circle"> </span> <span class="text">Order Ready</span>
                     </div>
-                    <div class="col">
-                        <div class="rounded-circle circle-sizing">
-                        </div>
-                        Ready
-                    </div>
-                    <div class="col">
-                        <div class="rounded-circle circle-sizing">
-                        </div>
-                        Paid
+                    <div class="step">
+                        <span class="circle"> </span> <span class="text">Order Paid</span> 
                     </div>
                 </div>
             </div>
-            <div class="col bg-dark bg-opacity-50">
-                3 of 3
+            <div class="col bg-dark bg-opacity-10 shadow-lg m-2 rounded-3">
+                Section for table details
             </div>
         </div>
     </div>

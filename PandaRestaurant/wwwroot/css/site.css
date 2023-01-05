@@ -16,16 +16,62 @@ html {
 body {
   margin-bottom: 60px;
 }
-.btn-circle.btn-sm {
-    width: 30px;
-    height: 30px;
-    padding: 6px 0px;
-    border-radius: 15px;
-    font-size: 8px;
-    text-align: center;
+
+.line {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px;
 }
-.circle-sizing {
-    width: 30px;
-    height: 30px;
-    background-color: lime;
-}
+
+    .line .step {
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        width: 25%;
+        margin-top: -18px;
+        text-align: center;
+        position: relative;
+    }
+
+        .line .step.active:before {
+            background: #FF5722;
+        }
+
+        .line .step::before {
+            height: 7px;
+            position: absolute;
+            content: "";
+            width: 100%;
+            left: 0;
+            top: 18px;
+        }
+
+        .line .step.active .circle {
+            background: #ee5435;
+            color: #fff;
+        }
+
+    .line .circle {
+        line-height: 40px;
+        position: relative;
+        border-radius: 100%;
+        background: #ddd;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+    }
+
+    .line .step.active .text {
+        font-weight: 400;
+        color: #000;
+    }
+
+    .line .text {
+        margin-top: 7px;
+        display: block;
+    }
