@@ -25,7 +25,8 @@ namespace PandaRestaurant.Pages.Customers
         {
             if (_context.Customer != null)
             {
-                Customer = await _context.Customer.ToListAsync();
+                Customer = await _context.Customer
+                    .Include(o => o.Orders).ToListAsync();
             }
         }
     }
