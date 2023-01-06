@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PandaRestaurant.Data;
 using PandaRestaurant.Models;
@@ -19,10 +20,39 @@ namespace PandaRestaurant.Pages.Customers
             _context = context;
         }
 
+        public string NameSort { get; set; }
+        public string OrderSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
+
         public IList<Customer> Customer { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortOrder)
         {
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            OrderSort = sortOrder == "Orders" ? "Orders_desc" : "Orders";
+
+            IQueryable<Customer> customersIQ = from c in _context.Customer
+                                               select c;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    customersIQ = customersIQ.OrderByDescending(c => c.CustomerName);
+                    break;
+                case "Orders":
+                    customersIQ = customersIQ.OrderBy(c => c.Orders.Count);
+                    break;
+                case "Orders_desc":
+                    customersIQ = customersIQ.OrderByDescending(c => c.Orders.Count);
+                    break;
+                default:
+                    customersIQ = customersIQ.OrderBy(c => c.CustomerName);
+                    break;
+            }
+
+            Customer = await customersIQ.AsNoTracking().ToListAsync();
+
             if (_context.Customer != null)
             {
                 Customer = await _context.Customer
