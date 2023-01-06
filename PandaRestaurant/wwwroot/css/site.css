@@ -15,8 +15,58 @@ html {
 
 body {
   margin-bottom: 60px;
+  background: #F9F9F9;
 }
 
 .btn-spacing {
     margin: 10px 0px 10px 0px;
+}
+
+#sidebar-nav {
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.list-group-item {
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.panda-logo {
+    padding: 30px;
+}
+
+.orders-image {
+    margin-left:-5px;
+}
+
+.dashboard-cards {
+    border-radius: 4px;
+    background: #ffffff;
+    min-height: 150px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    max-width: 340px;
+    column-count: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-card {
+    column-span: all;
+    margin-right: 15px;
+    max-height: 70px;
+
+}
+.text-card {
+    text-align: left;
+}
+.table-dashboard {
+    margin-top: 5%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.page-title {
+    font-size: 26px;
+    line-height: 29px;
+    color: #635D5D;
 }
