@@ -17,6 +17,25 @@ body {
   margin-bottom: 60px;
 }
 
+table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+tr {
+    padding:  50px 50px 50px 50px;
+    background-color: #FFFFFD;
+    position: relative
+}
+
+
+tbody tr:hover {
+    box-shadow: 0 0 5px #000;
+    background-color: white;
+    overflow: visible;
+ 
+    z-index: 2
+}
+
 
 .line {
     position: relative;
@@ -67,7 +86,8 @@ body {
         display: inline-block;
     }
 
-    .line .step.active .text {
+
+.line .step.active .text {
         font-weight: 400;
         color: #000;
     }
@@ -141,6 +161,11 @@ body {
 }
 .text-card {
     text-align: left;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
 }
 .table-dashboard {
     margin-top: 5%;
