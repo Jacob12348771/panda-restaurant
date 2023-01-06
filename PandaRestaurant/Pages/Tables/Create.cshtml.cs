@@ -28,18 +28,22 @@ namespace PandaRestaurant.Pages.Tables
         public Table Table { get; set; }
         
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // Using Table object to prevent overposting.
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            var emptyTable = new Table();
+            
+            if (await TryUpdateModelAsync<Table>(
+                emptyTable,
+                "table",
+                t => t.TableOccupied))
             {
-                return Page();
+                _context.Table.Add(Table);
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("./Index");
             }
-
-            _context.Table.Add(Table);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }
