@@ -28,7 +28,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Customer)
             </th>
-            <th></th>
+            <th>
+                Edit Order
+            </th>
+            <th>
+                Order Details
+            </th>
+            <th>
+                Remove Order
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -50,8 +58,12 @@
                 @Html.DisplayFor(modelItem => item.Customer.CustomerID)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.OrderID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OrderID">Details</a> |
+                <a asp-page="./Edit" asp-route-id="@item.OrderID">Edit</a>
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.OrderID">Details</a>
+            </td>
+            <td>
                 <a asp-page="./Delete" asp-route-id="@item.OrderID">Delete</a>
             </td>
         </tr>
