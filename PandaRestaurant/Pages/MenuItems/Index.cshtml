@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Menu List</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -13,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemName)
             </th>
@@ -22,12 +25,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrice)
             </th>
-            <th></th>
+            <th>
+                Remove Item
+            </th>
+            <th>
+                Edit Item
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.MenuItem) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuItemID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MenuItemName)
             </td>
@@ -38,8 +49,9 @@
                 @Html.DisplayFor(modelItem => item.MenuItemPrice)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.MenuItemID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MenuItemID">Details</a> |
+                <a asp-page="./Edit" asp-route-id="@item.MenuItemID">Edit</a>
+            </td>
+            <td>
                 <a asp-page="./Delete" asp-route-id="@item.MenuItemID">Delete</a>
             </td>
         </tr>
