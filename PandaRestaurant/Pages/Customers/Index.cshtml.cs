@@ -51,13 +51,9 @@ namespace PandaRestaurant.Pages.Customers
                     break;
             }
 
-            Customer = await customersIQ.AsNoTracking().ToListAsync();
-
-            if (_context.Customer != null)
-            {
-                Customer = await _context.Customer
-                    .Include(o => o.Orders).ToListAsync();
-            }
+            Customer = await customersIQ
+                .Include(o => o.Orders)
+                .ToListAsync();
         }
     }
 }
