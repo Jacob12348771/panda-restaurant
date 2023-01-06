@@ -28,7 +28,10 @@ namespace PandaRestaurant.Pages.Tables
                 return NotFound();
             }
 
-            var table = await _context.Table.FirstOrDefaultAsync(m => m.TableID == id);
+            var table = await _context.Table.
+                Include(o => o.Orders)
+               .Include(o => o.Employees)
+               .FirstOrDefaultAsync(m => m.TableID == id);
             if (table == null)
             {
                 return NotFound();

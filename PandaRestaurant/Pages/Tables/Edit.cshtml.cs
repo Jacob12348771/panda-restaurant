@@ -30,48 +30,36 @@ namespace PandaRestaurant.Pages.Tables
                 return NotFound();
             }
 
-            var table =  await _context.Table.FirstOrDefaultAsync(m => m.TableID == id);
-            if (table == null)
+            // Small performance bonus - Find async used to as no related data is being returned.
+            Table = await _context.Table.FindAsync(id);
+
+            if (Table == null)
             {
                 return NotFound();
             }
-            Table = table;
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        // Using Table object to prevent overposting.
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
+            var tableToUpdate = await _context.Table.FindAsync(id);
+
+            if (tableToUpdate == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Table).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync(
+                tableToUpdate,
+                "table",
+                t => t.TableOccupied))
             {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TableExists(Table.TableID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
-        }
-
-        private bool TableExists(int id)
-        {
-          return _context.Table.Any(e => e.TableID == id);
+            return Page();
         }
     }
 }
