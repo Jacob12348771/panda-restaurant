@@ -12,7 +12,7 @@
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col-8 bg-dark bg-opacity-10 shadow-lg m-2 rounded-3">
+            <div class="col-8 line-container bg-opacity-10 shadow-lg m-2 rounded-3">
                 <div class="line">
                     @if (Model.Order.OrderStatus.ToString() == "Created")
                     {
@@ -77,11 +77,30 @@
 
                 </div>
             </div>
-            <div class="col bg-dark bg-opacity-10 shadow-lg m-2 rounded-3 circle-container">
+            <div class="col shadow-lg m-2 rounded-3 circle-container">
                 <div class="d-flex flex-column rounded-circle circle-size text-center text-light">
                     <div class="d-flex flex-grow-1 justify-content-center align-items-center">
                         Table @Html.DisplayFor(modelItem => Model.Order.TableID)
                     </div>
+                </div>
+                <a asp-page="./Edit" asp-route-id="@Model.Order?.OrderID" class="d-flex flex-column text-center justify-content-center edit-order-button text-decoration-none text-light">
+                    Edit Order
+                </a>
+                <div class="float-md-start m-2 text-light">
+                    Total:
+                </div>
+                <div class="float-end m-2 text-light">
+                    @{
+                        var totalPrice = 0.00;
+                    }
+                    @foreach (var menuItem in Model.Order.MenuItem)
+                    {
+                        totalPrice += menuItem.MenuItemPrice;
+                    }
+                    @{
+                        var formattedPrice = string.Format("{0:0.00}", totalPrice);
+                    }
+                    £ @Html.DisplayFor(modelItem => formattedPrice)
                 </div>
             </div>
         </div>
@@ -125,6 +144,5 @@
     </table>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Order?.OrderID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

@@ -17,6 +17,7 @@ body {
   margin-bottom: 60px;
 }
 
+
 .line {
     position: relative;
     background-color: #ddd;
@@ -25,7 +26,7 @@ body {
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 60px;
-    margin-top: 50px;
+    margin-top: 90px;
 }
 
     .line .step {
@@ -81,4 +82,17 @@ body {
     height: 100px;
     background-color: mediumpurple;
     margin: 10px auto;
+}
+
+.edit-order-button {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    background-color: #ee5435;
+    margin: 10px auto 30px;
+    border-radius: 10px;
+}
+
+.circle-container {
+    background: linear-gradient(to top, #ee5435 20%, white 20%);
 }
