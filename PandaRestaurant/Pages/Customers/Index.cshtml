@@ -16,13 +16,13 @@
             <tr>
                 <th scope="col">
                     <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
-                        @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
+                        @Html.LabelFor(model => model.Customer[0].CustomerName, "Customer Name")
                     </a>
                 </th>
                 <th scope="col">
                     <a asp-page="./Index" asp-route-sortOrder="@Model.OrderSort">
-                    @Html.DisplayNameFor(model => model.Customer[0].Orders.Count)
-                </a>
+                        @Html.LabelFor(model => model.Customer[0].Orders.Count, "Active Orders")
+                    </a>
                 </th>
                 <th scope="col">Edit Customer</th>
                 <th scope="col">Remove Customer</th>
