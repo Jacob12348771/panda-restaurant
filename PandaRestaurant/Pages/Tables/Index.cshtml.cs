@@ -50,6 +50,7 @@ namespace PandaRestaurant.Pages.Tables
 
                 Table = await tablesIQ
                     .Include(o => o.Orders)
+                    .Include(o => o.Employees)
                     .ToListAsync();
         }
     }

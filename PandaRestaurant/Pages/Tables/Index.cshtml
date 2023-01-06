@@ -27,10 +27,10 @@
                 Active Orders
             </th>
             <th>
-                Edit Table
+                Assigned Employees
             </th>
             <th>
-                Table Details
+                Edit Table
             </th>
             <th>
                 Remove Table
@@ -62,10 +62,17 @@
                     @Html.DisplayFor(modelItem => activeOrders.Count)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a>
+                    <ul>
+                        @foreach (var employee in item.Employees)
+                        {
+                            <li>
+                                @Html.DisplayFor(modelItem => employee.EmployeeName)
+                            </li>
+                        }
+                    </ul>
                 </td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.TableID">Details</a>
+                    <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a>
                 </td>
                 <td>
                     <a asp-page="./Delete" asp-route-id="@item.TableID">Delete</a>
