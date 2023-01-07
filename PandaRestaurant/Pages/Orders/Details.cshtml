@@ -125,7 +125,7 @@
         <tbody>
             @foreach (var item in Model.Order.MenuItem)
             {
-                <tr>
+                <tr onclick="location.href = '../MenuItems/Details?id='+@item.MenuItemID">
                     <td>
                         @Html.DisplayFor(modelItem => item.MenuItemID)
                     </td>

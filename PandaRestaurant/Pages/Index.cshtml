@@ -98,7 +98,7 @@
             <tbody>
                 @foreach (var item in Model.Order)
                 {
-                    <tr>
+                    <tr onclick="location.href = 'Orders/Details?id='+@item.OrderID">
                         <th scope="row">1</th>
                         <td>
                             <ul>
