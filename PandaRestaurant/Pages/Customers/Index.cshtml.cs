@@ -27,13 +27,20 @@ namespace PandaRestaurant.Pages.Customers
 
         public IList<Customer> Customer { get;set; } = default!;
 
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder, string searchString)
         {
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             OrderSort = sortOrder == "Orders" ? "Orders_desc" : "Orders";
 
+            CurrentFilter = searchString;
+
             IQueryable<Customer> customersIQ = from c in _context.Customer
                                                select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customersIQ = customersIQ.Where(c => c.CustomerName.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
