@@ -20,8 +20,10 @@ namespace PandaRestaurant.Models
         [Display(Name = "Date & Time Ordered")]
         public DateTime OrderDatetime { get; set; }
         [ForeignKey("Table")]
+        [Display(Name = "Table ID")]
         public int TableID { get; set; }
         [ForeignKey("Customer")]
+        [Display(Name = "Customer ID")]
         public int CustomerID { get; set;}
         public ICollection<MenuItem> MenuItem { get; set; }
         public Table Table { get; set; }

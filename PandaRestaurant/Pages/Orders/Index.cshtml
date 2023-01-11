@@ -14,13 +14,17 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderID)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OrderNumberSort">
+                    @Html.DisplayNameFor(model => model.Order[0].OrderID)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].OrderStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OrderDateSort">
+                    @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Table)
@@ -28,9 +32,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Customer)
             </th>
-            <th>Order Details</th>
-            <th>Edit Order</th>
-            <th>Delete Order</th>
+            <th>
+                Order Details
+            </th>
+            <th>
+                Edit Order
+            </th>
+            <th>
+                Delete Order
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -69,3 +79,21 @@
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Order.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Order.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Order.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Order.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
