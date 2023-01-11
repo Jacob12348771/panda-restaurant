@@ -43,7 +43,7 @@
         <tbody>
             @foreach (var item in Model.Customer)
             {
-                <tr>
+                <tr onclick="location.href = 'Customers/Details?id='+@item.CustomerID">
                     <td>
                         @Html.DisplayFor(modelItem => item.CustomerName)
                     </td>
@@ -61,10 +61,14 @@
                         @Html.DisplayFor(modelItem => activeOrders.Count)
                     </td>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.CustomerID" class="btn btn-primary btn-warning">Edit</a>
+                        <a asp-page="./Edit" asp-route-id="@item.CustomerID">
+                            <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                        </a>
                     </td>
                     <td>
-                        <a asp-page="./Delete" asp-route-id="@item.CustomerID" class="btn btn-primary btn-danger">Delete</a>
+                        <a asp-page="./Delete" asp-route-id="@item.CustomerID">
+                            <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                        </a>
                     </td>
                 </tr>
             }

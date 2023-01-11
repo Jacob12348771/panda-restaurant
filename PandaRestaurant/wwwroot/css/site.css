@@ -15,8 +15,63 @@ html {
 
 body {
   margin-bottom: 60px;
+  color: dimgray;
 }
 
+
+table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+thead tr {
+    background: linear-gradient(white 10%, 95%, lightgray 97%);
+}
+tr {
+    text-align: center;
+    background-color: #FFFFFD;
+    position: relative;
+    color: gray;
+    padding: 1rem 1rem 1rem 1rem !important;
+}
+
+th {
+    padding: 1rem !important
+}
+td {
+    padding: 2rem  !important;
+}
+
+
+tbody tr:hover {
+    box-shadow: 0 0 5px #000;
+    background-color: white;
+    overflow: visible;
+    color: dimgray;
+    text-decoration: double;
+    z-index: 2
+}
+
+ul {
+    list-style: none
+}
+
+a {
+    color:#ff6c3c; 
+    text-decoration: none;
+
+}
+a:hover {
+    color: #ff6c3c;
+
+}
+
+.details {
+    font-weight: bold;
+}
+.details:hover {
+    text-decoration: underline;
+}
 
 .line {
     position: relative;
@@ -67,7 +122,8 @@ body {
         display: inline-block;
     }
 
-    .line .step.active .text {
+
+.line .step.active .text {
         font-weight: 400;
         color: #000;
     }
@@ -141,6 +197,11 @@ body {
 }
 .text-card {
     text-align: left;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
 }
 .table-dashboard {
     margin-top: 5%;
