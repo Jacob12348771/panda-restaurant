@@ -40,7 +40,7 @@
     <tbody>
         @foreach (var item in Model.Table)
         {
-            <tr>
+            <tr onclick="location.href = 'Tables/Details?id='+@item.TableID">
                 <td>
                     @Html.DisplayFor(modelItem => item.TableID)
                 </td>
@@ -72,10 +72,14 @@
                     </ul>
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a>
+                    <a asp-page="./Edit" asp-route-id="@item.TableID">
+                        <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                    </a>
                 </td>
                 <td>
-                    <a asp-page="./Delete" asp-route-id="@item.TableID">Delete</a>
+                    <a asp-page="./Delete" asp-route-id="@item.TableID">
+                        <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                    </a>
                 </td>
             </tr>
         }
