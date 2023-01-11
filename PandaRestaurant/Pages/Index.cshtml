@@ -9,71 +9,77 @@
 <div class="text-center container">
     <div class="row cards-row gy-5">
         <div class="col-md-4">
-            <div class="dashboard-cards"> 
-                <img src="/images/tablesOcuppied.svg" class="image-card"/>
-                <p class="text-card">
-                    <b>
-                    @{
-                        List<int> occupiedTables = new List<int>();
-                    }
-                    @foreach (var item in Model.Table)
-                    {
-                        if (item.TableOccupied == true)
-                        {
-                            occupiedTables.Add(item.TableID);
+            <a class="card-link" asp-area="" asp-page="/Tables/Index">
+                <div class="dashboard-cards"> 
+                    <img src="/images/tablesOcuppied.svg" class="image-card"/>
+                    <p class="text-card">
+                        <b>
+                        @{
+                            List<int> occupiedTables = new List<int>();
                         }
-                    }
-                    @Html.DisplayFor(modelItem => occupiedTables.Count)
-                    </b>
+                        @foreach (var item in Model.Table)
+                        {
+                            if (item.TableOccupied == true)
+                            {
+                                occupiedTables.Add(item.TableID);
+                            }
+                        }
+                        @Html.DisplayFor(modelItem => occupiedTables.Count)
+                        </b>
+                        <br />
+                        Tables Occupied
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="card-link" asp-area="" asp-page="/Tables/Index">
+                <div class="dashboard-cards">
+                    <img src="/images/tablesFree.svg" class="image-card" />
+                    <p class="text-card">
+                        <b>
+                        @{
+                            List<int> unoccupiedTables = new List<int>();
+                        }
+                        @foreach (var item in Model.Table)
+                        {
+                            if (item.TableOccupied == false)
+                            {
+                                unoccupiedTables.Add(item.TableID);
+                            }
+                        }
+                        @Html.DisplayFor(modelItem => unoccupiedTables.Count)
+                        </b>
                     <br />
-                    Tables Occupied
-                </p>
-            </div>
+                    Tables Free
+                    </p>
+                </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="dashboard-cards">
-                <img src="/images/tablesFree.svg" class="image-card" />
-                <p class="text-card">
-                    <b>
-                    @{
-                        List<int> unoccupiedTables = new List<int>();
-                    }
-                    @foreach (var item in Model.Table)
-                    {
-                        if (item.TableOccupied == false)
-                        {
-                            unoccupiedTables.Add(item.TableID);
-                        }
-                    }
-                    @Html.DisplayFor(modelItem => unoccupiedTables.Count)
-                    </b>
-                <br />
-                Tables Free
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="dashboard-cards">
-                <img src="/images/activeOrders.svg" class="image-card" />
-                <p class="text-card">
-                   <b>
-                   @{
-                        List<int> activeOrders = new List<int>();
-                   }
-                   @foreach (var item in Model.Order)
-                   {
-                       // @Html.DisplayFor(modelItem => item.OrderStatus.ToString())
-                       if (item.OrderStatus.ToString() != "Paid")
-                       {
-                           activeOrders.Add(item.OrderID);
+            <a class="card-link" asp-area="" asp-page="/Orders/Index">
+                <div class="dashboard-cards">
+                    <img src="/images/activeOrders.svg" class="image-card" />
+                    <p class="text-card">
+                       <b>
+                       @{
+                            List<int> activeOrders = new List<int>();
                        }
-                   }
-                   @Html.DisplayFor(modelItem => activeOrders.Count)
-                   </b>
-                   <br/>
-                   Active Orders
-                </p>
-            </div>
+                       @foreach (var item in Model.Order)
+                       {
+                           // @Html.DisplayFor(modelItem => item.OrderStatus.ToString())
+                           if (item.OrderStatus.ToString() != "Paid")
+                           {
+                               activeOrders.Add(item.OrderID);
+                           }
+                       }
+                       @Html.DisplayFor(modelItem => activeOrders.Count)
+                       </b>
+                       <br/>
+                       Active Orders
+                    </p>
+                </div>
+            </a>
         </div>
     </div>
     <!-- Add pagination and sorting using similar way to contoso tutorial. -->
@@ -92,7 +98,7 @@
             <tbody>
                 @foreach (var item in Model.Order)
                 {
-                    <tr>
+                    <tr onclick="location.href = 'Orders/Details?id='+@item.OrderID">
                         <th scope="row">1</th>
                         <td>
                             <ul>

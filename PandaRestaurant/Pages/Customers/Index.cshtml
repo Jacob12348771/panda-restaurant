@@ -16,20 +16,31 @@
             <tr>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Active Orders</th>
+                <th>Customer Details</th>
+                <th>Edit Customer</th>
+                <th>Delete Customer</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Customer)
             {
-                <tr>
+                <tr onclick="location.href = 'Customers/Details?id='+@item.CustomerID">
                     <td>
                         @Html.DisplayFor(modelItem => item.CustomerName)
                     </td>
                     <td scope="row">@Html.DisplayFor(modelItem => item.Orders.Count)</td>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.CustomerID">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.CustomerID">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.CustomerID">Delete</a>
+                        <a asp-page="./Details" asp-route-id="@item.CustomerID" class="details">Details</a>
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.CustomerID">
+                            <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-page="./Delete" asp-route-id="@item.CustomerID">
+                            <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                        </a>
                     </td>
                 </tr>
             }
