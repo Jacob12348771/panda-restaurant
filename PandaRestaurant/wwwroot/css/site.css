@@ -212,3 +212,7 @@ a:hover {
     line-height: 29px;
     color: #635D5D;
 }
+
+.btn-colouring {
+    background-color: #ee5435;
+}
