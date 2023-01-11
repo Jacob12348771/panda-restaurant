@@ -14,13 +14,17 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderID)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OrderNumberSort">
+                    @Html.DisplayNameFor(model => model.Order[0].OrderID)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].OrderStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OrderDateSort">
+                    @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Table)
