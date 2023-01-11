@@ -2,23 +2,42 @@
 @model PandaRestaurant.Pages.Customers.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Customers";
 }
 
 <h1>Customers</h1>
 
 <p>
-    <a asp-page="Create">Create New</a> 
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index" class="btn btn-outline-dark">Back to full List</a>
+        </p>
+    </div>
+</form>
+
 <div id="table" class="row">
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Active Orders</th>
-                <th>Customer Details</th>
-                <th>Edit Customer</th>
-                <th>Delete Customer</th>
+                <th scope="col">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                        @Html.LabelFor(model => model.Customer[0].CustomerName, "Customer Name")
+                    </a>
+                </th>
+                <th scope="col">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.OrderSort">
+                        @Html.LabelFor(model => model.Customer[0].Orders.Count, "Active Orders")
+                    </a>
+                </th>
+                <th scope="col">Edit Customer</th>
+                <th scope="col">Remove Customer</th>
             </tr>
         </thead>
         <tbody>
@@ -28,9 +47,18 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CustomerName)
                     </td>
-                    <td scope="row">@Html.DisplayFor(modelItem => item.Orders.Count)</td>
-                    <td>
-                        <a asp-page="./Details" asp-route-id="@item.CustomerID" class="details">Details</a>
+                    <td scope="row">
+                        @{
+                            List<int> activeOrders = new List<int>();
+                        }
+                        @foreach (var order in item.Orders)
+                        {
+                            if (order.OrderStatus.ToString() != "Paid")
+                            {
+                                activeOrders.Add(order.OrderID);
+                            }
+                        }
+                        @Html.DisplayFor(modelItem => activeOrders.Count)
                     </td>
                     <td>
                         <a asp-page="./Edit" asp-route-id="@item.CustomerID">
