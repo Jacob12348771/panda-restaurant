@@ -27,7 +27,7 @@
                 Active Orders
             </th>
             <th>
-                Table Details
+                Assigned Employees
             </th>
             <th>
                 Edit Table
@@ -62,7 +62,14 @@
                     @Html.DisplayFor(modelItem => activeOrders.Count)
                 </td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.TableID" class="details">Details</a>
+                    <ul>
+                        @foreach (var employee in item.Employees)
+                        {
+                            <li>
+                                @Html.DisplayFor(modelItem => employee.EmployeeName)
+                            </li>
+                        }
+                    </ul>
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.TableID">
@@ -78,3 +85,21 @@
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Table.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Table.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Table.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Table.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
