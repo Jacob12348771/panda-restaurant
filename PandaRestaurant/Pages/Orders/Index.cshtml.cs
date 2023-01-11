@@ -60,5 +60,6 @@ namespace PandaRestaurant.Pages.Orders
                 .Include(o => o.Table)
                 .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
+
     }
 }

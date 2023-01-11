@@ -66,6 +66,30 @@ a:hover {
 
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #ff6c3c !important;
+    border-color: #ff6c3c !important;
+}
+
+.order-status {
+    font-weight: bold;
+    padding: 0.6em 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.7em;
+}
+
+.orange {
+    background-color: #ffe5de;
+    color: #ff6c3c;
+}
+
+.green {
+    background-color: #e9f9ee;
+    color: #30c259;
+}
+
 .details {
     font-weight: bold;
 }

@@ -19,9 +19,6 @@
                 </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderStatus)
-            </th>
-            <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.OrderDateSort">
                     @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
                 </a>
@@ -33,13 +30,16 @@
                 @Html.DisplayNameFor(model => model.Order[0].Customer)
             </th>
             <th>
-                Order Details
+                @Html.DisplayNameFor(model => model.Order[0].OrderStatus)
             </th>
             <th>
                 Edit Order
             </th>
             <th>
                 Delete Order
+            </th>
+            <th>
+                Order Details
             </th>
         </tr>
     </thead>
@@ -51,9 +51,6 @@
                     @Html.DisplayFor(modelItem => item.OrderID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OrderStatus)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.OrderDatetime)
                 </td>
                 <td>
@@ -63,7 +60,20 @@
                     @Html.DisplayFor(modelItem => item.Customer.CustomerID)
                 </td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.OrderID" class="details">Details</a>
+                    @{
+                        List<Models.Order.OrderStatusEnum> greenOrderStatuses = new List<Models.Order.OrderStatusEnum>();
+                        greenOrderStatuses.Add(Models.Order.OrderStatusEnum.Paid);
+                        greenOrderStatuses.Add(Models.Order.OrderStatusEnum.Ready);
+
+                        string orderStatusClass = "order-status";
+                        string orderStatusColour = orderStatusClass + " orange";
+                        if (greenOrderStatuses.Contains(item.OrderStatus)) {
+                            orderStatusColour = orderStatusClass + " green";
+                        }
+                    }
+                    <div class="@orderStatusColour">
+                        @Html.DisplayFor(modelItem => item.OrderStatus)
+                    </div>
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.OrderID">
@@ -74,6 +84,9 @@
                     <a asp-page="./Delete" asp-route-id="@item.OrderID">
                         <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
                     </a>
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.OrderID" class="details">Details</a>
                 </td>
             </tr>
         }
