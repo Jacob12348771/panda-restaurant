@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PandaRestaurant.Data;
 using PandaRestaurant.Models;
+using System.Drawing;
 
 namespace PandaRestaurant.Pages.Orders
 {
     public class IndexModel : PageModel
     {
-        private readonly PandaRestaurant.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly IConfiguration Configuration;
 
-        public IndexModel(PandaRestaurant.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         public string OrderNumberSort { get; set; }
         public string OrderDateSort { get; set; }
+        public string CurrentSort { get; set; }
 
-        public IList<Order> Order { get;set; } = default!;
+        public PaginatedList<Order> Order { get; set; }
 
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder, int? pageIndex)
         {
+            CurrentSort = sortOrder;
             OrderNumberSort = String.IsNullOrEmpty(sortOrder) ? "OrderID_desc" : "";
             OrderDateSort = sortOrder == "OrderDateTime" ? "OrderDateTime_desc" : "OrderDateTime";
 
@@ -47,10 +53,12 @@ namespace PandaRestaurant.Pages.Orders
                     ordersIQ = ordersIQ.OrderBy(o => o.OrderID);
                     break;
             }
-                Order = await ordersIQ
+            var pageSize = Configuration.GetValue("PageSize", 5);
+                Order = await PaginatedList<Order>.CreateAsync(
+                ordersIQ
                 .Include(o => o.Customer)
                 .Include(o => o.Table)
-                .ToListAsync();
+                .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }
