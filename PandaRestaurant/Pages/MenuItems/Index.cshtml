@@ -10,51 +10,57 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrepTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrice)
-            </th>
-            <th>
-                Remove Item
-            </th>
-            <th>
-                Edit Item
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.MenuItem) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemPrepTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemPrice)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.MenuItemID">Edit</a>
-            </td>
-            <td>
-                <a asp-page="./Delete" asp-route-id="@item.MenuItemID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div id="table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrepTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrice)
+                </th>
+                <th>
+                    Edit Item
+                </th>
+                <th>
+                    Remove Item
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.MenuItem) {
+                <tr onclick="location.href = 'MenuItems/Details?id='+@item.MenuItemID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItemID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItemPrepTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItemPrice)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.MenuItemID">              
+                        <img class="edit" src="~/images/edit-button.svg" alt="Edit"/>
+                    </a>
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.MenuItemID">
+                         <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                    </a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
