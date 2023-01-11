@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PandaRestaurant.Data;
@@ -12,20 +13,23 @@ namespace PandaRestaurant.Pages.Tables
 {
     public class IndexModel : PageModel
     {
-        private readonly PandaRestaurant.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly IConfiguration Configuration;
 
-        public IndexModel(PandaRestaurant.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         public string TableNumberSort { get; set; }
         public string OccupiedSort { get; set; }
+        public string CurrentSort { get; set; }
+        public PaginatedList<Table> Table { get; set; }
 
-        public IList<Table> Table { get;set; } = default!;
-
-        public async Task OnGetAsync(string sortOrder)
+        public async Task OnGetAsync(string sortOrder, int? pageIndex)
         {
+            CurrentSort = sortOrder;
             TableNumberSort = String.IsNullOrEmpty(sortOrder) ? "TableID_desc" : "";
             OccupiedSort = sortOrder == "TableOccupied" ? "TableOccupied_desc" : "TableOccupied";
 
@@ -48,10 +52,12 @@ namespace PandaRestaurant.Pages.Tables
                     break;
             }
 
-                Table = await tablesIQ
+            var pageSize = Configuration.GetValue("PageSize", 5);
+                Table = await PaginatedList<Table>.CreateAsync(
+                    tablesIQ
                     .Include(o => o.Orders)
                     .Include(o => o.Employees)
-                    .ToListAsync();
+                    .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }
