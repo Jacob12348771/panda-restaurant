@@ -24,6 +24,42 @@ table {
 
 }
 
+.table-homepage {
+    --bs-table-bg: transparent;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+}
+
+.table-item {
+    font-size: 14px;
+}
+
+main {
+    margin-bottom: 5%;
+}
+
+.top-navigation {
+    height: 40px;
+    margin: -8px -8px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.burger-menu {
+    vertical-align: middle;
+    margin: 2px 0 0 10px;
+    position: absolute;
+    display: inline;
+}
 thead tr {
     background: linear-gradient(white 10%, 95%, lightgray 97%);
 }
@@ -33,13 +69,15 @@ tr {
     position: relative;
     color: gray;
     padding: 1rem 1rem 1rem 1rem !important;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 th {
-    padding: 1rem !important
+    padding: 1rem !important;
 }
 td {
-    padding: 2rem  !important;
+    border: 2px solid rgba(251, 237, 233, 1) !important;
+    font-size: 14px;
 }
 
 
@@ -175,8 +213,7 @@ a:hover {
 
 .circle-container {
     background: linear-gradient(to top, #ee5435 20%, white 20%);
-}
-  background: #F9F9F9;
+    background-color: #F9F9F9;
 }
 
 .btn-spacing {
@@ -235,8 +272,51 @@ a:hover {
     font-size: 26px;
     line-height: 29px;
     color: #635D5D;
+    margin-top: 21px;
+    margin-bottom: 62px;
 }
 
 .btn-colouring {
     background-color: #ee5435;
+}
+
+.form-control {
+    margin-bottom: 16px;
+}
+
+.back-link {
+    float: right;
+}
+.action-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.submit-button .back-link {
+    flex: 0 0 100%;
+    padding: 10px 0;
+}
+
+.back-link {
+    text-align: right;
+}
+
+.control-label {
+    margin-bottom: 8px;
+}
+
+.form-submit {
+    padding: 20px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.content {
+    text-align: center !important;
+}
+
+.table-input{
+    margin-bottom: 16px;
 }

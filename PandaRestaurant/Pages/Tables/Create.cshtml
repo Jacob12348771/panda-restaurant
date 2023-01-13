@@ -5,28 +5,27 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="page-title content">Add a new table available in your restaurant</h1>
 
-<h4>Table</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
+    <div class="col-md-4 offset-4">
+        <form method="post" class="form-submit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Table.TableOccupied" /> @Html.DisplayNameFor(model => model.Table.TableOccupied)
+                    <input class="form-check-input table-input" asp-for="Table.TableOccupied" /> @Html.DisplayNameFor(model => model.Table.TableOccupied)
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary btn-spacing" />
+           <div class="form-group row action-form">
+                <div class="col-md-6 submit-button">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <div class="col-md-6 back-link">
+                    <a asp-page="Index">Back to List</a>
+                </div>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

@@ -84,7 +84,7 @@
     </div>
     <!-- Add pagination and sorting using similar way to contoso tutorial. -->
     <div id="table" class="row table-dashboard">
-        <table class="table">
+        <table class="table-home-page">
             <thead>
                 <tr>
                     <th scope="col">Img</th>
@@ -99,12 +99,12 @@
                 @foreach (var item in Model.Order)
                 {
                     <tr onclick="location.href = 'Orders/Details?id='+@item.OrderID">
-                        <th scope="row">1</th>
+                        <th scope="row"><img src="/images/meal.svg" class="image-card" /></th>
                         <td>
                             <ul>
                                 @foreach (var order in item.MenuItem)
                                 {
-                                    <li>
+                                    <li class="table-item">
                                         @Html.DisplayFor(modelItem => order.MenuItemName)
                                     </li>
                                 }
@@ -115,7 +115,7 @@
                             <ul>
                                 @foreach (var order in item.MenuItem)
                                 {
-                                    <li>
+                                    <li class="table-item">
                                         @Html.DisplayFor(modelItem => order.MenuItemPrepTime) mins
                                     </li>
                                 }
@@ -125,7 +125,7 @@
                             <ul>
                                 @foreach (var order in item.MenuItem)
                                 {
-                                    <li>
+                                    <li class="table-item">
                                         @Html.DisplayFor(modelItem => order.MenuItemPrice)
                                     </li>
                                 }
