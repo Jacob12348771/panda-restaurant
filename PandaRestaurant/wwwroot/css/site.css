@@ -250,6 +250,12 @@ a:hover {
     align-items: center;
 }
 
+#sidebar {
+    z-index: 99;
+}
+#sidebar-button {
+    z-index: 100;
+}
 .image-card {
     column-span: all;
     margin-right: 15px;
