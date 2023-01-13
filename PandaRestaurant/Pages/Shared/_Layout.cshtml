@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="~/PandaRestaurant.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <div class="col-auto px-0">
@@ -46,9 +45,11 @@
                     </div>
                 </div>
                 <main class="col ps-md-2 pt-2">
-                    <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="p-1 text-decoration-none">
-                        <img class="burger" src="~/images/burger.png" alt="Menu">
-                    </a>
+                    <div class="top-navigation">
+                            <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="p-1 text-decoration-none burger-menu">
+                            <img class="burger" src="~/images/burger.png" alt="Menu">
+                        </a>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="container">
@@ -66,7 +67,6 @@
                 </footer>
             </div>
         </div>
-    </header>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
