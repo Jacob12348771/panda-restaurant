@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PandaRestaurant.Data;
 using PandaRestaurant.Models;
 
@@ -14,10 +15,12 @@ namespace PandaRestaurant.Pages.Customers
     public class IndexModel : PageModel
     {
         private readonly PandaRestaurant.Data.ApplicationDbContext _context;
+        private readonly IConfiguration Configuration;
 
-        public IndexModel(PandaRestaurant.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         public string NameSort { get; set; }
@@ -25,12 +28,21 @@ namespace PandaRestaurant.Pages.Customers
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public IList<Customer> Customer { get;set; } = default!;
+        public PaginatedList<Customer> Customer { get; set; } = default!;
 
-        public async Task OnGetAsync(string sortOrder, string searchString)
+        public async Task OnGetAsync(string sortOrder, string searchString, string currentFilter, int? pageIndex)
         {
+            CurrentSort = sortOrder;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             OrderSort = sortOrder == "Orders" ? "Orders_desc" : "Orders";
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
             CurrentFilter = searchString;
 
@@ -58,9 +70,11 @@ namespace PandaRestaurant.Pages.Customers
                     break;
             }
 
-            Customer = await customersIQ
+            var pageSize = Configuration.GetValue("PageSize", 5);
+                Customer = await PaginatedList<Customer>.CreateAsync(
+                customersIQ
                 .Include(o => o.Orders)
-                .ToListAsync();
+                .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }
