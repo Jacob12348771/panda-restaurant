@@ -5,7 +5,7 @@
     ViewData["Title"] = "Customers";
 }
 
-<h1>Customers</h1>
+<h1 class ="page-title">Customers</h1>
 
 <p>
     <a asp-page="Create" class="btn btn-primary">Create New</a>
@@ -14,7 +14,7 @@
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name:
+            Find by Name:
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Search" class="btn btn-primary" /> |
             <a asp-page="./Index" class="btn btn-outline-dark">Back to full List</a>
@@ -75,3 +75,23 @@
         </tbody>
     </table>
 </div>
+
+@{
+    var prevDisabled = !Model.Customer.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Customer.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Customer.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Customer.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
