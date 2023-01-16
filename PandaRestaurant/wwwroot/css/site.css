@@ -104,9 +104,15 @@ a:hover {
 
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+.btn-primary, .btn-secondary:hover, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #ff6c3c !important;
     border-color: #ff6c3c !important;
+}
+
+.btn-secondary, .btn-secondary:active, .btn-secondary:visited {
+    background-color: white !important;
+    border-color: #ff6c3c !important;
+    color: #ff6c3c !important;
 }
 
 .order-status {
@@ -200,6 +206,14 @@ a:hover {
     height: 100px;
     background-color: mediumpurple;
     margin: 10px auto;
+}
+
+.create-button-container {
+    float: left;
+}
+
+.search-container { 
+    float: right;
 }
 
 .edit-order-button {
