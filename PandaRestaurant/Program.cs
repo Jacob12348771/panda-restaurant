@@ -40,7 +40,7 @@ using (var scope = app.Services.CreateScope())
     // Instance of ApplicationDbContext obtained before creating Database.
     var context = services.GetRequiredService<ApplicationDbContext>();
 
-    context.Database.EnsureCreated();
+    // context.Database.EnsureCreated();
     
     DbInitializer.Initialize(context);
 }
