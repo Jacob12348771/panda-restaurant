@@ -4,38 +4,37 @@ using System.Diagnostics;
 
 namespace AutomatedTests
 {
-    public class MenuItemsTests : IDisposable
+    public class OrdersTests : IDisposable
     {
         private readonly IWebDriver _driver;
-        public MenuItemsTests() => _driver = new ChromeDriver();
+        public OrdersTests() => _driver = new ChromeDriver();
 
         [Fact]
-        public void Menu_Items_Page_Loads()
+        public void Orders_Page_Loads()
         {
-            // Navigates to the Menu Items page of our app
+            // Navigates to the Orders page of our app
             _driver.Navigate()
-                .GoToUrl("https://localhost:2345/MenuItems");
-            // Checks that the page is the Menu Items page
-            Assert.Equal("Menu Items - PandaRestaurant", _driver.Title);
-            // Assert.Contains("Dashboard", _driver.PageSource);
+                .GoToUrl("https://localhost:2345/Orders");
+            // Checks that the page is the Orders page
+            Assert.Equal("Orders - PandaRestaurant", _driver.Title);
 
         }
 
         [Fact]
-        public void Menu_Items_Table_Rows_Navigate_To_Correct_Menu_Items_Details_Page()
+        public void Orders_Table_Rows_Navigate_To_Correct_Orders_Details_Page()
         {
-            // Navigate to the Menu Items page of our app
+            // Navigate to the Orders page of our app
             _driver.Navigate()
          .GoToUrl("https://localhost:2345");
 
-            int numOfOrders = _driver.FindElements(By.ClassName("menu-item-table-row")).Count;
+            int numOfOrders = _driver.FindElements(By.ClassName("order-table-row")).Count;
 
-            // For each menu item in the menu item table
+            // For each order in the order table
             for (int i = 0; i < numOfOrders; i++)
             {
 
                 // Clicks on the row in the table 
-                IWebElement tableRow = _driver.FindElement(By.Id("menu-item-" + (i + 1).ToString()));
+                IWebElement tableRow = _driver.FindElement(By.Id("order-" + (i + 1).ToString()));
                 new Actions(_driver)
                 .MoveToElement(tableRow)
                 .Perform();
@@ -45,8 +44,8 @@ namespace AutomatedTests
                 .Perform();
 
                 // Checks that we have navigated to the correct details page
-                Assert.Equal("Menu Item Details - PandaRestaurant", _driver.Title);
-                Assert.Equal("https://localhost:2345/MenuItems/Details?id=" + (i + 1).ToString(), _driver.Url);
+                Assert.Equal("Order Details - PandaRestaurant", _driver.Title);
+                Assert.Equal("https://localhost:2345/Orders/Details?id=" + (i + 1).ToString(), _driver.Url);
 
                 // Navigate back to the dashboard of our app (except for last run
                 if (i != numOfOrders)
@@ -60,13 +59,13 @@ namespace AutomatedTests
 
 
         [Fact]
-        public void Menu_Items_Create_Button_Navigates_To_The_Create_Page()
+        public void Order_Create_Button_Navigates_To_The_Create_Page()
         {
-            // Navigate to the Menu Items page of our app
+            // Navigate to the Orders page of our app
             _driver.Navigate()
-         .GoToUrl("https://localhost:2345/MenuItems");
+         .GoToUrl("https://localhost:2345/Orders");
 
-                // Clicks on the create menu item button
+                // Clicks on the create order button
                 IWebElement create = _driver.FindElement(By.Id("create"));
                 new Actions(_driver)
                 .MoveToElement(create)
@@ -76,29 +75,29 @@ namespace AutomatedTests
                 .Click()
                 .Perform();
 
-                // Checks that we have navigated to the create menu item page
-                Assert.Equal("Create Menu Item - PandaRestaurant", _driver.Title);
-                Assert.Equal("https://localhost:2345/MenuItems/Create", _driver.Url);
+                // Checks that we have navigated to the create order page
+                Assert.Equal("Create Order - PandaRestaurant", _driver.Title);
+                Assert.Equal("https://localhost:2345/Orders/Create", _driver.Url);
 
 
         }
 
 
         [Fact]
-        public void Menu_Items_Edit_Buttons_Navigate_To_Correct_Menu_Items_Edit_Page()
+        public void Orders_Edit_Buttons_Navigate_To_Correct_Orders_Edit_Page()
         {
-            // Navigate to the Menu Items page of our app
+            // Navigate to the Orders page of our app
             _driver.Navigate()
-         .GoToUrl("https://localhost:2345/MenuItems");
+         .GoToUrl("https://localhost:2345/Orders");
 
-            int numOfOrders = _driver.FindElements(By.ClassName("menu-item-table-row")).Count;
+            int numOfOrders = _driver.FindElements(By.ClassName("order-table-row")).Count;
 
-            // For each menu item in the menu item table
+            // For each order in the order table
             for (int i = 0; i < numOfOrders; i++)
             {
 
                 // Clicks on the edit button for this row 
-                IWebElement edit = _driver.FindElement(By.CssSelector("#menu-item-" + (i + 1).ToString() + " .edit"));
+                IWebElement edit = _driver.FindElement(By.CssSelector("#order-" + (i + 1).ToString() + " .edit"));
                 new Actions(_driver)
                 .MoveToElement(edit)
                 .Perform();
@@ -108,8 +107,8 @@ namespace AutomatedTests
                 .Perform();
 
                 // Checks that we have navigated to the correct edit page
-                Assert.Equal("Edit Menu Item - PandaRestaurant", _driver.Title);
-                Assert.Equal("https://localhost:2345/MenuItems/Edit?id=" + (i + 1).ToString(), _driver.Url);
+                Assert.Equal("Edit Order - PandaRestaurant", _driver.Title);
+                Assert.Equal("https://localhost:2345/Orders/Edit?id=" + (i + 1).ToString(), _driver.Url);
 
                 // Navigate back to the dashboard of our app (except for last run
                 if (i != numOfOrders)
@@ -122,20 +121,20 @@ namespace AutomatedTests
         }
 
         [Fact]
-        public void Menu_Items_Delete_Buttons_Navigate_To_Correct_Menu_Items_Delete_Page()
+        public void Orders_Delete_Buttons_Navigate_To_Correct_Orders_Delete_Page()
         {
-            // Navigate to the Menu Items page of our app
+            // Navigate to the Orders page of our app
             _driver.Navigate()
-         .GoToUrl("https://localhost:2345/MenuItems");
+         .GoToUrl("https://localhost:2345/Orders");
 
-            int numOfOrders = _driver.FindElements(By.ClassName("menu-item-table-row")).Count;
+            int numOfOrders = _driver.FindElements(By.ClassName("order-table-row")).Count;
 
-            // For each menu item in the menu item table
+            // For each order in the order table
             for (int i = 0; i < numOfOrders; i++)
             {
 
                 // Clicks on the delete button for this row 
-                IWebElement delete = _driver.FindElement(By.CssSelector("#menu-item-" + (i + 1).ToString() + " .delete"));
+                IWebElement delete = _driver.FindElement(By.CssSelector("#order-" + (i + 1).ToString() + " .delete"));
                 new Actions(_driver)
                 .MoveToElement(delete)
                 .Perform();
@@ -145,8 +144,8 @@ namespace AutomatedTests
                 .Perform();
 
                 // Checks that we have navigated to the correct delete page
-                Assert.Equal("Delete Menu Item - PandaRestaurant", _driver.Title);
-                Assert.Equal("https://localhost:2345/MenuItems/Delete?id=" + (i + 1).ToString(), _driver.Url);
+                Assert.Equal("Delete Order - PandaRestaurant", _driver.Title);
+                Assert.Equal("https://localhost:2345/Orders/Delete?id=" + (i + 1).ToString(), _driver.Url);
 
                 // Navigate back to the dashboard of our app (except for last run
                 if (i != numOfOrders)
