@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PandaRestaurant", "PandaRestaurant\PandaRestaurant.csproj", "{3356AE49-6478-4D3F-AD78-5CE4A92FBCE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{E95C21F2-652E-4CCB-A6A6-7BCF0D8ED5DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatedTests", "Tests\AutomatedTests.csproj", "{E95C21F2-652E-4CCB-A6A6-7BCF0D8ED5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

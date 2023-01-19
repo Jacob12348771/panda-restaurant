@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Dashboard";
 }
 <div class="container">
     <h1 class="page-title">Dashboard</h1>
@@ -10,7 +10,7 @@
     <div class="row cards-row gy-5">
         <div class="col-md-4">
             <a class="card-link" asp-area="" asp-page="/Tables/Index">
-                <div class="dashboard-cards"> 
+                <div class="dashboard-cards" id="tables-occupied-card"> 
                     <img src="/images/tablesOcuppied.svg" class="image-card"/>
                     <p class="text-card">
                         <b>
@@ -35,7 +35,7 @@
         <div class="col-md-4">
             <a class="card-link" asp-area="" asp-page="/Tables/Index">
                 <div class="dashboard-cards">
-                    <img src="/images/tablesFree.svg" class="image-card" />
+                    <img src="/images/tablesFree.svg" class="image-card" id="tables-free-card"/>
                     <p class="text-card">
                         <b>
                         @{
@@ -58,8 +58,8 @@
         </div>
         <div class="col-md-4">
             <a class="card-link" asp-area="" asp-page="/Orders/Index">
-                <div class="dashboard-cards">
-                    <img src="/images/activeOrders.svg" class="image-card" />
+                <div class="dashboard-cards" id="orders-active-card">
+                    <img src="/images/activeOrders.svg" class="image-card"/>
                     <p class="text-card">
                        <b>
                        @{
@@ -98,7 +98,7 @@
             <tbody>
                 @foreach (var item in Model.Order)
                 {
-                    <tr onclick="location.href = 'Orders/Details?id='+@item.OrderID">
+                    <tr onclick="location.href = 'Orders/Details?id='+@item.OrderID" class="order-table-row" id="order-@item.OrderID">
                         <th scope="row"><img src="/images/meal.svg" class="image-card" /></th>
                         <td>
                             <ul>
