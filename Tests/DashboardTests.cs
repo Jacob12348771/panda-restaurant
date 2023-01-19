@@ -76,7 +76,6 @@ namespace AutomatedTests
             // For each order in the order table
             for (int i = 0; i < numOfOrders; i++)
             {
-                WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
 
                 // Clicks on the row in the table 
                 IWebElement tableRow = _driver.FindElement(By.Id("order-" + (i + 1).ToString()));
@@ -97,7 +96,7 @@ namespace AutomatedTests
                 {
                     _driver.Navigate().Back();
                 }
-           
+
 
             }
 
