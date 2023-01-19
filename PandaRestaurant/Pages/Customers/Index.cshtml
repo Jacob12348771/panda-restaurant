@@ -7,22 +7,25 @@
 
 <h1 class ="page-title">Customers</h1>
 
-<p>
-    <a asp-page="Create" class="btn btn-primary" id="create">Create New</a>
-</p>
-
-<form asp-page="./Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by Name:
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-page="./Index" class="btn btn-outline-dark">Back to full List</a>
-        </p>
+<div class="table-top-bar">
+    <div class="create-button-container col-xs-9"  id="create">
+        <a asp-page="Create" class="btn btn-primary">Create New</a>
     </div>
-</form>
+    <div class="search-container float-left col-xs-3">
+        <form asp-page="./Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Find by name:
+                    <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                    <input type="submit" value="Search" class="btn btn-primary" /> |
+                    <a asp-page="./Index" class="btn btn-secondary">Back to full List</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
 
-<div id="table" class="row">
+<div id="table">
     <table class="table">
         <thead>
             <tr>

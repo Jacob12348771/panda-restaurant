@@ -36,7 +36,10 @@ namespace PandaRestaurant.Data
                 new Models.MenuItem{MenuItemName="Chicken Noodle Soup", MenuItemPrepTime=15, MenuItemPrice=11.60},
                 new Models.MenuItem{MenuItemName="Tomato Soup", MenuItemPrepTime=15, MenuItemPrice=9.50},
                 new Models.MenuItem{MenuItemName="Panda's Special Soup", MenuItemPrepTime=20, MenuItemPrice=20.00},
-                new Models.MenuItem{MenuItemName="Saturday Soup", MenuItemPrepTime=10, MenuItemPrice=14.50}
+                new Models.MenuItem{MenuItemName="Saturday Soup", MenuItemPrepTime=10, MenuItemPrice=14.50},
+                new Models.MenuItem{MenuItemName="Beef Noodle Soup", MenuItemPrepTime=15, MenuItemPrice=11.60},
+                new Models.MenuItem{MenuItemName="Super Secret Noodle Soup", MenuItemPrepTime=15, MenuItemPrice=9.50},
+                new Models.MenuItem{MenuItemName="Panda's Veggie Special Soup", MenuItemPrepTime=20, MenuItemPrice=20.00},
             };
 
             context.MenuItem.AddRange(menuItems);
