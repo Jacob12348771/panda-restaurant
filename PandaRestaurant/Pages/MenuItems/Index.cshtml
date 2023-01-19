@@ -36,7 +36,7 @@
         </thead>
         <tbody>
     @foreach (var item in Model.MenuItem) {
-                <tr onclick="location.href = 'MenuItems/Details?id='+@item.MenuItemID">
+                <tr onclick="location.href = 'MenuItems/Details?id='+@item.MenuItemID" class="menu-item-table-row" id="menu-item-@item.MenuItemID">
                 <td>
                     @Html.DisplayFor(modelItem => item.MenuItemID)
                 </td>

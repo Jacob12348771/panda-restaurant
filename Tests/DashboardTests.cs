@@ -17,7 +17,7 @@ namespace AutomatedTests
                 .GoToUrl("https://localhost:2345");
             // Checks that the page is the home page
             Assert.Equal("Dashboard - PandaRestaurant", _driver.Title);
-            // Assert.Contains("Dashboard", _driver.PageSource);
+            Assert.Contains("Dashboard", _driver.PageSource);
 
         }
 
@@ -65,9 +65,9 @@ namespace AutomatedTests
         }
 
         [Fact]
-        public void Orders_Table_Rows_Navigate_To_Correct_Order_Detail_Page()
+        public void Orders_Table_Rows_Navigate_To_Correct_Order_Details_Page()
         {
-            // Navigate back to the dashboard of our app
+            // Navigate to the dashboard of our app
             _driver.Navigate()
          .GoToUrl("https://localhost:2345");
 
