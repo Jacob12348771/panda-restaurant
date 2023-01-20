@@ -8,7 +8,7 @@
 <h1 class ="page-title">Customers</h1>
 
 <div class="table-top-bar">
-    <div class="create-button-container col-xs-9">
+    <div class="create-button-container col-xs-9"  id="create">
         <a asp-page="Create" class="btn btn-primary">Create New</a>
     </div>
     <div class="search-container float-left col-xs-3">
@@ -46,7 +46,7 @@
         <tbody>
             @foreach (var item in Model.Customer)
             {
-                <tr onclick="location.href = 'Customers/Details?id='+@item.CustomerID">
+                <tr onclick="location.href = 'Customers/Details?id='+@item.CustomerID" class="customer-table-row" id="customer-@item.CustomerID">
                     <td>
                         @Html.DisplayFor(modelItem => item.CustomerName)
                     </td>

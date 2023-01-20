@@ -115,6 +115,16 @@ a:hover {
     color: #ff6c3c !important;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff !important;
+    background-color: #ff6c3c !important;
+    border-color: #1861ac !important;
+}
+
+.nav-link {
+    color: #ff6c3c !important;
+}
+
 .order-status {
     font-weight: bold;
     padding: 0.6em 0.8em;
@@ -236,7 +246,6 @@ a:hover {
 
 #sidebar-nav {
     background: #ffffff;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .list-group-item {
@@ -286,7 +295,6 @@ a:hover {
 }
 .table-dashboard {
     margin-top: 5%;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .page-title {
     font-size: 26px;
