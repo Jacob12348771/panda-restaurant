@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PandaRestaurant.Models;
 
 namespace PandaRestaurant.Pages
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly PandaRestaurant.Data.ApplicationDbContext _context;
