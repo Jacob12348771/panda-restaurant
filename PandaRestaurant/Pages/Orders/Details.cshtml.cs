@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using PandaRestaurant.Models;
 
 namespace PandaRestaurant.Pages.Orders
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly PandaRestaurant.Data.ApplicationDbContext _context;
@@ -28,7 +30,9 @@ namespace PandaRestaurant.Pages.Orders
                 return NotFound();
             }
 
-            var order = await _context.Order.FirstOrDefaultAsync(m => m.OrderID == id);
+            var order = await _context.Order.
+                Include(m => m.MenuItem)
+                .FirstOrDefaultAsync(m => m.OrderID == id);
             if (order == null)
             {
                 return NotFound();

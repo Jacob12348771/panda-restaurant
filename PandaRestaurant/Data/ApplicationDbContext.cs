@@ -10,14 +10,19 @@ namespace PandaRestaurant.Data
             : base(options)
         {
         }
-        public DbSet<PandaRestaurant.Models.Customer> Customer { get; set; }
-        public DbSet<PandaRestaurant.Models.Employee> Employee { get; set; }
-        public DbSet<PandaRestaurant.Models.Table> Table { get; set; }
-        public DbSet<PandaRestaurant.Models.Order> Order { get; set; }
-        public DbSet<PandaRestaurant.Models.MenuItem> MenuItem { get; set; }
+        // Entity sets created.
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<Table> Table { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<MenuItem> MenuItem { get; set; }
+        
+        // References to other entities delclared. Allows pages to related data.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>().ToTable("Customer");
+            modelBuilder.Entity<Customer>().ToTable("Customer")
+                .HasMany(o => o.Orders)
+                .WithOne(c => c.Customer);
             modelBuilder.Entity<Employee>().ToTable("Employee")
                 .HasMany(t => t.Tables)
                 .WithMany(e => e.Employees);

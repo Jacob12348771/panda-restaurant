@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using PandaRestaurant.Models;
 
 namespace PandaRestaurant.Pages.Tables
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly PandaRestaurant.Data.ApplicationDbContext _context;
@@ -28,18 +30,22 @@ namespace PandaRestaurant.Pages.Tables
         public Table Table { get; set; }
         
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // Using Table object to prevent overposting.
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            var emptyTable = new Table();
+            
+            if (await TryUpdateModelAsync<Table>(
+                emptyTable,
+                "table",
+                t => t.TableOccupied))
             {
-                return Page();
+                _context.Table.Add(Table);
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("./Index");
             }
-
-            _context.Table.Add(Table);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }

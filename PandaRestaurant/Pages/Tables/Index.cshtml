@@ -2,35 +2,104 @@
 @model PandaRestaurant.Pages.Tables.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tables";
 }
 
-<h1>Index</h1>
+<h1 class="page-title">Tables</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary" id="create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Table[0].TableOccupied)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TableNumberSort">
+                    @Html.DisplayNameFor(model => model.Table[0].TableID)
+                </a>
             </th>
-            <th></th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OccupiedSort">
+                    @Html.DisplayNameFor(model => model.Table[0].TableOccupied)
+                </a>
+            </th>
+            <th>
+                Active Orders
+            </th>
+            <th>
+                Assigned Employees
+            </th>
+            <th>
+                Edit Table
+            </th>
+            <th>
+                Remove Table
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Table) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TableOccupied)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.TableID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.TableID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.TableID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Table)
+        {
+            <tr onclick="location.href = 'Tables/Details?id='+@item.TableID" class="table-table-row" id="table-@item.TableID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TableID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TableOccupied)
+                </td>
+                <td>
+                    @{
+                        List<int> activeOrders = new List<int>();
+                    }
+                    @foreach (var order in item.Orders)
+                    {
+                        // @Html.DisplayFor(modelItem => item.OrderStatus.ToString())
+                        if (order.OrderStatus.ToString() != "Paid")
+                        {
+                            activeOrders.Add(order.OrderID);
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => activeOrders.Count)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var employee in item.Employees)
+                        {
+                            <li>
+                                @Html.DisplayFor(modelItem => employee.EmployeeName)
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.TableID">
+                        <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                    </a>
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.TableID">
+                        <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Table.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Table.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Table.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Table.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

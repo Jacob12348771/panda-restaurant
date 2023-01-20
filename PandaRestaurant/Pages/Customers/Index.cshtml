@@ -2,35 +2,99 @@
 @model PandaRestaurant.Pages.Customers.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Customers";
 }
 
-<h1>Index</h1>
+<h1 class ="page-title">Customers</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Customer) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CustomerID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CustomerID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CustomerID">Delete</a>
-            </td>
-        </tr>
+<div class="table-top-bar">
+    <div class="create-button-container col-xs-9"  id="create">
+        <a asp-page="Create" class="btn btn-primary">Create New</a>
+    </div>
+    <div class="search-container float-left col-xs-3">
+        <form asp-page="./Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Find by name:
+                    <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                    <input type="submit" value="Search" class="btn btn-primary" /> |
+                    <a asp-page="./Index" class="btn btn-secondary">Back to full List</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                        @Html.LabelFor(model => model.Customer[0].CustomerName, "Customer Name")
+                    </a>
+                </th>
+                <th scope="col">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.OrderSort">
+                        @Html.LabelFor(model => model.Customer[0].Orders.Count, "Active Orders")
+                    </a>
+                </th>
+                <th scope="col">Edit Customer</th>
+                <th scope="col">Remove Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Customer)
+            {
+                <tr onclick="location.href = 'Customers/Details?id='+@item.CustomerID" class="customer-table-row" id="customer-@item.CustomerID">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td scope="row">
+                        @{
+                            List<int> activeOrders = new List<int>();
+                        }
+                        @foreach (var order in item.Orders)
+                        {
+                            if (order.OrderStatus.ToString() != "Paid")
+                            {
+                                activeOrders.Add(order.OrderID);
+                            }
+                        }
+                        @Html.DisplayFor(modelItem => activeOrders.Count)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.CustomerID">
+                            <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-page="./Delete" asp-route-id="@item.CustomerID">
+                            <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@{
+    var prevDisabled = !Model.Customer.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Customer.HasNextPage ? "disabled" : "";
 }
-    </tbody>
-</table>
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Customer.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Customer.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

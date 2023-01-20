@@ -2,31 +2,31 @@
 @model PandaRestaurant.Pages.Customers.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Customer";
 }
 
-<h1>Create</h1>
+<h1 class="page-title content">Add a new customer</h1>
 
-<h4>Customer</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
+    <div class="col-md-4 offset-4">
+        <form method="post" class="form-submit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Customer.CustomerName" class="control-label"></label>
-                <input asp-for="Customer.CustomerName" class="form-control" />
+                <label asp-for="Customer.CustomerName" class="control-label">Customer Name</label>
+                <input asp-for="Customer.CustomerName" class="form-control input-group-text" />
                 <span asp-validation-for="Customer.CustomerName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <br />
+           <div class="form-group row action-form">
+                <div class="col-md-6 submit-button">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <div class="col-md-6 back-link">
+                    <a asp-page="Index">Back to List</a>
+                </div>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

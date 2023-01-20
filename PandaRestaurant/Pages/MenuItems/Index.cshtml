@@ -2,47 +2,108 @@
 @model PandaRestaurant.Pages.MenuItems.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Menu Items";
 }
 
-<h1>Index</h1>
+<h1 class="page-title">Menu List</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrepTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrice)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.MenuItem) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemPrepTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuItemPrice)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.MenuItemID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MenuItemID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.MenuItemID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="table-top-bar">
+    <div class="create-button-container col-xs-9">
+        <a asp-page="Create" class="btn btn-primary" id="create">Create New</a>
+    </div>
+    <div class="search-container float-left col-xs-3">
+        <form asp-page="./Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Find by name:
+                    <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                    <input type="submit" value="Search" class="btn btn-primary" /> |
+                    <a asp-page="./Index" class="btn btn-secondary">Back to full List</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.MenuItemNumberSort">
+                        @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemID)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.MenuItemNameSort"
+                       asp-route-currentFilter="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemName)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.MenuItemPrepTimeSort">
+                        @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrepTime)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.MenuItemPriceSort">
+                        @Html.DisplayNameFor(model => model.MenuItem[0].MenuItemPrice)
+                    </a>
+                </th>
+                <th>
+                    Edit Item
+                </th>
+                <th>
+                    Remove Item
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MenuItem)
+            {
+                <tr onclick="location.href = 'MenuItems/Details?id='+@item.MenuItemID" class="menu-item-table-row" id="menu-item-@item.MenuItemID">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemPrepTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuItemPrice)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.MenuItemID">
+                            <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-page="./Delete" asp-route-id="@item.MenuItemID">
+                            <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.MenuItem.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.MenuItem.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.MenuItem.PageIndex - 1)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.MenuItem.PageIndex + 1)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+</div>

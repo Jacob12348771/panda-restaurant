@@ -15,4 +15,345 @@ html {
 
 body {
   margin-bottom: 60px;
+  color: dimgray;
+}
+
+
+table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.table-homepage {
+    --bs-table-bg: transparent;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+}
+
+.table-item {
+    font-size: 14px;
+}
+
+main {
+    margin-bottom: 5%;
+}
+
+.top-navigation {
+    height: 40px;
+    margin: -8px -8px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.burger-menu {
+    vertical-align: middle;
+    margin: 2px 0 0 10px;
+    position: absolute;
+    display: inline;
+}
+thead tr {
+    background: linear-gradient(white 10%, 95%, lightgray 97%);
+}
+tr {
+    text-align: center;
+    background-color: #FFFFFD;
+    position: relative;
+    color: gray;
+    padding: 1rem 1rem 1rem 1rem !important;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+th {
+    padding: 1rem !important;
+}
+td {
+    font-size: 14px;
+}
+
+
+tbody tr:hover {
+    box-shadow: 0 0 5px #000;
+    background-color: white;
+    overflow: visible;
+    color: dimgray;
+    text-decoration: double;
+    z-index: 2
+}
+
+ul {
+    list-style: none
+}
+
+a {
+    color:#ff6c3c; 
+    text-decoration: none;
+
+}
+a:hover {
+    color: #ff6c3c;
+
+}
+
+.btn-primary, .btn-secondary:hover, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #ff6c3c !important;
+    border-color: #ff6c3c !important;
+}
+
+.btn-secondary, .btn-secondary:active, .btn-secondary:visited {
+    background-color: white !important;
+    border-color: #ff6c3c !important;
+    color: #ff6c3c !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff !important;
+    background-color: #ff6c3c !important;
+    border-color: #1861ac !important;
+}
+
+.nav-link {
+    color: #ff6c3c !important;
+}
+
+.order-status {
+    font-weight: bold;
+    padding: 0.6em 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.7em;
+}
+
+.order-status-dashboard {
+    font-weight: bold;
+    padding: 1rem 0.1rem;
+    margin: 0.4rem 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.7em;
+}
+
+.orange {
+    background-color: #ffe5de;
+    color: #ff6c3c;
+}
+
+.green {
+    background-color: #e9f9ee;
+    color: #30c259;
+}
+
+.details {
+    font-weight: bold;
+}
+.details:hover {
+    text-decoration: underline;
+}
+
+.line {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 90px;
+}
+
+    .line .step {
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        width: 25%;
+        margin-top: -18px;
+        text-align: center;
+        position: relative;
+    }
+
+        .line .step.active:before {
+            background: #FF5722;
+        }
+
+        .line .step::before {
+            height: 7px;
+            position: absolute;
+            content: "";
+            width: 100%;
+            left: 0;
+            top: 18px;
+        }
+
+        .line .step.active .circle {
+            background: #ee5435;
+            color: #fff;
+        }
+
+    .line .circle {
+        line-height: 40px;
+        position: relative;
+        border-radius: 100%;
+        background: #ddd;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+    }
+
+
+.line .step.active .text {
+        font-weight: 400;
+        color: #000;
+    }
+
+    .line .text {
+        margin-top: 7px;
+        display: block;
+    }
+.circle-size {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: mediumpurple;
+    margin: 10px auto;
+}
+
+.create-button-container {
+    float: left;
+}
+
+.search-container { 
+    float: right;
+}
+
+.edit-order-button {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    background-color: #ee5435;
+    margin: 10px auto 30px;
+    border-radius: 10px;
+}
+
+.circle-container {
+    background: linear-gradient(to top, #ee5435 20%, white 20%);
+    background-color: #F9F9F9;
+}
+
+.btn-spacing {
+    margin: 10px 0px 10px 0px;
+}
+
+#sidebar-nav {
+    background: #ffffff;
+}
+
+.list-group-item {
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.panda-logo {
+    padding: 30px;
+}
+
+.orders-image {
+    margin-left:-5px;
+}
+
+.dashboard-cards {
+    border-radius: 4px;
+    background: #ffffff;
+    min-height: 150px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    max-width: 340px;
+    column-count: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sidebar {
+    z-index: 99;
+}
+#sidebar-button {
+    z-index: 100;
+}
+.image-card {
+    column-span: all;
+    margin-right: 15px;
+    max-height: 70px;
+
+}
+.text-card {
+    text-align: left;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+.table-dashboard {
+    margin-top: 5%;
+}
+.page-title {
+    font-size: 26px;
+    line-height: 29px;
+    color: #635D5D;
+    margin-top: 21px;
+    margin-bottom: 62px;
+}
+
+.btn-colouring {
+    background-color: #ee5435;
+}
+
+.form-control {
+    margin-bottom: 16px;
+}
+
+.back-link {
+    float: right;
+}
+.action-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.submit-button .back-link {
+    flex: 0 0 100%;
+    padding: 10px 0;
+}
+
+.back-link {
+    text-align: right;
+}
+
+.control-label {
+    margin-bottom: 8px;
+}
+
+.form-submit {
+    padding: 20px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.content {
+    text-align: center !important;
+}
+
+.table-input{
+    margin-bottom: 16px;
 }

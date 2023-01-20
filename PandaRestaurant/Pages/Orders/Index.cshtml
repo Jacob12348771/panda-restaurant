@@ -2,22 +2,26 @@
 @model PandaRestaurant.Pages.Orders.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Orders";
 }
 
-<h1>Index</h1>
+<h1 class="page-title">Orders</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary" id="create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderStatus)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OrderNumberSort">
+                    @Html.DisplayNameFor(model => model.Order[0].OrderID)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OrderDateSort">
+                    @Html.DisplayNameFor(model => model.Order[0].OrderDatetime)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Table)
@@ -25,30 +29,84 @@
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Customer)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].OrderStatus)
+            </th>
+            <th>
+                Edit Order
+            </th>
+            <th>
+                Delete Order
+            </th>
+            <th>
+                Order Details
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Order) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDatetime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Table.TableID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.CustomerID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.OrderID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OrderID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OrderID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Order)
+        {
+            <tr onclick="location.href = 'Orders/Details?id='+@item.OrderID" class="order-table-row" id="order-@item.OrderID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDatetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Table.TableID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerID)
+                </td>
+                <td>
+                    @{
+                        List<Models.Order.OrderStatusEnum> greenOrderStatuses = new List<Models.Order.OrderStatusEnum>();
+                        greenOrderStatuses.Add(Models.Order.OrderStatusEnum.Paid);
+                        greenOrderStatuses.Add(Models.Order.OrderStatusEnum.Ready);
+
+                        string orderStatusClass = "order-status";
+                        string orderStatusColour = orderStatusClass + " orange";
+                        if (greenOrderStatuses.Contains(item.OrderStatus)) {
+                            orderStatusColour = orderStatusClass + " green";
+                        }
+                    }
+                    <div class="@orderStatusColour">
+                        @Html.DisplayFor(modelItem => item.OrderStatus)
+                    </div>
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.OrderID">
+                        <img class="edit" src="~/images/edit-button.svg" alt="Edit" />
+                    </a>
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.OrderID">
+                        <img class="delete" src="~/images/delete-button.svg" alt="Delete" />
+                    </a>
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.OrderID" class="details">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Order.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Order.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Order.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Order.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

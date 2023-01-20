@@ -2,13 +2,13 @@
 @model PandaRestaurant.Pages.Customers.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Customer Details";
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>Customer</h4>
+    <h4>Customer ID: @Html.DisplayFor(model => model.Customer.CustomerID)</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
