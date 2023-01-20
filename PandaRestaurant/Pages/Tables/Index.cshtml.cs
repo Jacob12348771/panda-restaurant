@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PandaRestaurant.Data;
 using PandaRestaurant.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PandaRestaurant.Pages.Tables
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;

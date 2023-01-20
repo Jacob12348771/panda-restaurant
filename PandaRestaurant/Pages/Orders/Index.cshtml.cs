@@ -9,9 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using PandaRestaurant.Data;
 using PandaRestaurant.Models;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PandaRestaurant.Pages.Orders
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;

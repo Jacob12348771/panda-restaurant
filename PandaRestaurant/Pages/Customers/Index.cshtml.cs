@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -12,6 +13,7 @@ using PandaRestaurant.Models;
 
 namespace PandaRestaurant.Pages.Customers
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly PandaRestaurant.Data.ApplicationDbContext _context;
