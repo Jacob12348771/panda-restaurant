@@ -2,13 +2,13 @@
 @model PandaRestaurant.Pages.Tables.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tables";
 }
 
 <h1 class="page-title">Tables</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-primary">Create New</a>
+    <a asp-page="Create" class="btn btn-primary" id="create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -40,7 +40,7 @@
     <tbody>
         @foreach (var item in Model.Table)
         {
-            <tr onclick="location.href = 'Tables/Details?id='+@item.TableID">
+            <tr onclick="location.href = 'Tables/Details?id='+@item.TableID" class="table-table-row" id="table-@item.TableID">
                 <td>
                     @Html.DisplayFor(modelItem => item.TableID)
                 </td>
