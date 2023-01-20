@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using PandaRestaurant;
 using PandaRestaurant.Data;
+using PandaRestaurant.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+builder.Services.Configure<MessageAuthenticationSenderOptions>(builder.Configuration);
 
 var app = builder.Build();
 
