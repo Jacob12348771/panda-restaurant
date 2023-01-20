@@ -26,7 +26,6 @@
             }
             @foreach(var item in Model.Table.Orders) 
             {
-                // @Html.DisplayFor(modelItem => item.OrderStatus.ToString())
                 if (item.OrderStatus.ToString() != "Paid")
                 {
                     activeOrders.Add(item.OrderID);
