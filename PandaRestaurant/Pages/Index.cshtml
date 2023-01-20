@@ -87,7 +87,7 @@
         <table class="table-home-page">
             <thead>
                 <tr>
-                    <th scope="col">Img</th>
+                    <th scope="col">Order</th>
                     <th scope="col">Meal Name</th>
                     <th scope="col">Table</th>
                     <th scope="col">Prep Time</th>
@@ -131,7 +131,23 @@
                                 }
                             </ul>
                         </td>
-                        <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                        @{
+                            List<Models.Order.OrderStatusEnum> greenOrderStatuses = new List<Models.Order.OrderStatusEnum>();
+                            greenOrderStatuses.Add(Models.Order.OrderStatusEnum.Paid);
+                            greenOrderStatuses.Add(Models.Order.OrderStatusEnum.Ready);
+
+                            string orderStatusClass = "order-status-dashboard";
+                            string orderStatusColour = orderStatusClass + " orange";
+                            if (greenOrderStatuses.Contains(item.OrderStatus))
+                            {
+                                orderStatusColour = orderStatusClass + " green";
+                            }
+                        }
+                        <td>
+                            <div class="@orderStatusColour">
+                                @Html.DisplayFor(modelItem => item.OrderStatus)
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
